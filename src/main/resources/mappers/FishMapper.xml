@@ -12,7 +12,7 @@
     </select>
 
     <select id="search" resultType="fish">
-        select name, address from fishing_hole where address like '%${value}%'
+        select * from fishing_hole where address like '%${value}%'
     </select>
     <!--# -> preparedStatement 내부적으로 진행됨, 파싱된 sql은 재활용됨 , ''자동삽입 -->
     <!--$ -> parameter가 그대로 들어감, 재활용x, sql injection 위험-->
