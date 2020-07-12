@@ -15,7 +15,7 @@
         select * from fishing_hole where address like '%${value}%'
     </select>
     <!--# -> preparedStatement 내부적으로 진행됨, 파싱된 sql은 재활용됨 , ''자동삽입 -->
-    <!--$ -> parameter가 그대로 들어감, 재활용x, sql injection 위험-->
+    <!--$ -> parameter가 그대로 들어감, 재활용 x, sql injection 위험-->
     <select id="viewOne" resultType="fish">
         select * from fishing_hole where id=#{id}
     </select>
