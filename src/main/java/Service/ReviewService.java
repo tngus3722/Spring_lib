@@ -19,9 +19,9 @@ public class ReviewService {
     public void insert(ReviewDTO reviewDTO){
         reviewMapper.insert(reviewDTO);
     }
-    public Boolean delete(int id, String inputPassword){
+    public Boolean delete(int id, String inputPassword){ // 삭제
         String password = reviewMapper.getPasswordById(id);
-        if ( password.equals(inputPassword)){
+        if ( password.equals(inputPassword)){ // 비밀번호 확인
             reviewMapper.delete(id);
             return true;
         }
@@ -29,9 +29,9 @@ public class ReviewService {
             return false;
     }
 
-    public Boolean update(int id, String content, String title, int fish_id, String inputPassword){
+    public Boolean update(int id, String content, String title, int fish_id, String inputPassword){ // 수정
         String password = reviewMapper.getPasswordById(id);
-        if ( password.equals(inputPassword)){
+        if ( password.equals(inputPassword)){ // 비밀번호 확인
             reviewMapper.update(title,content,id);
             return true;
         }

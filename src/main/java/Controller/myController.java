@@ -28,7 +28,7 @@ public class myController{
     }
 */
     @RequestMapping(value = "/")
-    public ModelAndView display(){
+    public ModelAndView display(){ // 기본화면
         List<FishingHoleDTO> list = fishService.display();
         ModelAndView mav = new ModelAndView();
         mav.addObject("list",list);
@@ -37,7 +37,7 @@ public class myController{
     }
 
     @RequestMapping(value = "/search")
-    public ModelAndView search(@RequestParam("search") String search){
+    public ModelAndView search(@RequestParam("search") String search){ // 검색
         ModelAndView mav = new ModelAndView();
         List<FishingHoleDTO> list = fishService.search(search);
         mav.addObject("list",list);
@@ -45,7 +45,7 @@ public class myController{
         return mav;
     }
 
-    @RequestMapping(value = "/board", method = RequestMethod.GET)
+    @RequestMapping(value = "/board", method = RequestMethod.GET) // 해당 낚시터 디테일 정보
     public ModelAndView getBoard(@RequestParam("id") int id , @RequestParam(value = "str", required = false) String str){
         ModelAndView mav = new ModelAndView();
         mav.setViewName("detail");
@@ -55,7 +55,7 @@ public class myController{
         return mav;
     }
 
-    @RequestMapping(value ="/board" , method= RequestMethod.POST)
+    @RequestMapping(value ="/board" , method= RequestMethod.POST) // 리뷰 발행
     public String postBoard(@RequestParam("fish_id") int fish_id, @RequestParam("name") String name,
                                   @RequestParam("title") String title, @RequestParam("content") String content,
                                   @RequestParam("password") String password){
@@ -69,22 +69,22 @@ public class myController{
         return "redirect:board/?id="+ fish_id;
     }
 
-    @RequestMapping(value = "/board", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/board", method = RequestMethod.DELETE) // 리뷰 삭제
     public String deleteBoard(@RequestParam("id") int id, @RequestParam("password") String inputPassword,
                               @RequestParam("fish_id") int fish_id){
         ModelAndView mav = new ModelAndView();
         if ( !reviewService.delete(id, inputPassword) )
-            return "redirect:board/?id="+ fish_id +"&str=passwordFail";
+            return "redirect:board/?id="+ fish_id +"&str=passwordFail"; // 비밀번호가 틀리면 get으로 문자열
         else
             return "redirect:board/?id="+ fish_id;
     }
 
-    @RequestMapping(value = "/board", method = RequestMethod.PUT)
+    @RequestMapping(value = "/board", method = RequestMethod.PUT) // 리뷰 수정
     public String updateBoard(@RequestParam("id") int id, @RequestParam("password") String inputPassword,
                               @RequestParam("fish_id") int fish_id, @RequestParam("title") String title,
                               @RequestParam("content") String content){
         if ( !reviewService.update(id, content, title, fish_id,inputPassword) )
-            return "redirect:board/?id="+ fish_id +"&str=passwordFail";
+            return "redirect:board/?id="+ fish_id +"&str=passwordFail"; // 비밀번호가 틀리면 get으로 문자열
         else
             return "redirect:board/?id="+ fish_id;
     }

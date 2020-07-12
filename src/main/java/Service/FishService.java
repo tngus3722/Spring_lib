@@ -21,14 +21,14 @@ public class FishService {
 
     public FishService(){ }
     public FishingHoleDTO viewOne(int id){
-        return fishMapper.viewOne(id);
+        return fishMapper.viewOne(id); // 낚시터 하나 조회
     }
     public List<FishingHoleDTO> search(String search){
         return fishMapper.search(search);
-    }
+    } //검색
     public List<FishingHoleDTO> display(){
         return fishMapper.display();
-    }
+    } // 모든 정보 조회
 
     /* do once for data2db
     public void initial(){
