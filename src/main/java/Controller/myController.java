@@ -20,7 +20,7 @@ public class myController{
     @Autowired
     ReviewService reviewService;
 
-/* do once for data2db
+/* do once for data2db.
     @ResponseBody
     @RequestMapping(value = "/data2db")
     public void data2db(){
