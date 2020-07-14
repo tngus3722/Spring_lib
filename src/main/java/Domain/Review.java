@@ -1,15 +1,24 @@
-package DTO;
+package Domain;
 
 import java.util.Date;
 
-public class ReviewDTO {
-    private int id;
-    private int fish_id;
+public class Review {
+    private Long id;
+    private Integer fish_id;
     private String name;
     private String title;
     private String content;
-    private Date date;
+    private Date created_at;
+    private Date update_at;
     private String password;
+
+    public Date getUpdate_at() {
+        return update_at;
+    }
+
+    public void setUpdate_at(Date update_at) {
+        this.update_at = update_at;
+    }
 
     public String getPassword() {
         return password;
@@ -19,21 +28,21 @@ public class ReviewDTO {
         this.password = password;
     }
 
-    public ReviewDTO(){};
+    public Review(){};
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getFish_id() {
+    public Integer getFish_id() {
         return fish_id;
     }
 
-    public void setFish_id(int fish_id) {
+    public void setFish_id(Integer fish_id) {
         this.fish_id = fish_id;
     }
 
@@ -61,11 +70,11 @@ public class ReviewDTO {
         this.content = content;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getCreated_at() {
+        return created_at;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setCreated_at(Date created_at) {
+        this.created_at = created_at;
     }
 }

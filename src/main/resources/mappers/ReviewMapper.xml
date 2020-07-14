@@ -5,7 +5,7 @@
 
 <mapper namespace="Repository.ReviewMapper">
     <select id="display" resultType="review">
-        SELECT * FROM review WHERE fish_id = #{id}
+        SELECT * FROM review WHERE fish_id = #{fish_id}
     </select>
 
     <insert id="insert">
@@ -21,6 +21,6 @@
     </select>
 
     <update id="update">
-        UPDATE review SET title=#{title},content=#{content},date=now() WHERE id=#{id}
+        UPDATE review SET title=#{title},content=#{content},update_at=now() WHERE id=#{id}
     </update>
 </mapper>

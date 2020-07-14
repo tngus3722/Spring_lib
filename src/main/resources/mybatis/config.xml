@@ -5,7 +5,7 @@
 
 <configuration>
     <typeAliases>
-        <typeAlias type="DTO.FishingHoleDTO" alias="fish"/>
-        <typeAlias type="DTO.ReviewDTO" alias="review"/>
+        <typeAlias type="Domain.FishingHole" alias="fish"/>
+        <typeAlias type="Domain.Review" alias="review"/>
     </typeAliases>
 </configuration>

@@ -1,10 +1,9 @@
-package DTO;
+package Domain;
 
 import java.sql.Date;
 
-public class FishingHoleDTO {
-    private int id;
-    private int fish_id;
+public class FishingHole {
+    private Integer id;
     private String name;
     private String category;
     private String address;
@@ -13,21 +12,13 @@ public class FishingHoleDTO {
     private String fish_species;
     private Date date;
 
-    public int getFish_id() {
-        return fish_id;
-    }
+    public FishingHole(){}
 
-    public void setFish_id(int fish_id) {
-        this.fish_id = fish_id;
-    }
-
-    public FishingHoleDTO(){}
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

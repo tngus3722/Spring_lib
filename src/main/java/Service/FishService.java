@@ -1,16 +1,10 @@
 package Service;
 
-import DTO.FishingHoleDTO;
+import Domain.FishingHole;
 import Repository.FishMapper;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.FileReader;
-import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,13 +14,13 @@ public class FishService {
     FishMapper fishMapper;
 
     public FishService(){ }
-    public FishingHoleDTO viewOne(int id){
+    public FishingHole viewOne(Integer id){
         return fishMapper.viewOne(id); // 낚시터 하나 조회
     }
-    public List<FishingHoleDTO> search(String search){
+    public List<FishingHole> search(String search){
         return fishMapper.search(search);
     } //검색
-    public List<FishingHoleDTO> display(){
+    public List<FishingHole> display(){
         return fishMapper.display();
     } // 모든 정보 조회
 

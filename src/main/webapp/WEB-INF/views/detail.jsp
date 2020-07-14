@@ -63,7 +63,8 @@
         <td>작성자</td>
         <td>제목</td>
         <td>내용</td>
-        <td>날짜</td>
+        <td>생성 날짜</td>
+        <td>업데이트 날짜</td>
     </tr>
     <c:forEach var="i" items="${list}">
         <tr>
@@ -71,7 +72,8 @@
             <td>${i.getName()}</td>
             <td>${i.getTitle()}</td>
             <td>${i.getContent()}</td>
-            <td>${i.getDate()}</td>
+            <td>${i.getCreated_at()}</td>
+            <td>${i.getUpdate_at()}</td>
             <td>
                 <form method="post" action="/board">
                     <input type="hidden" value="PUT" name="_method">

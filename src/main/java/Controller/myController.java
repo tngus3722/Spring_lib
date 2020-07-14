@@ -1,7 +1,7 @@
 package Controller;
 
-import DTO.FishingHoleDTO;
-import DTO.ReviewDTO;
+import Domain.FishingHole;
+import Domain.Review;
 import Service.FishService;
 import Service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class myController{
 */
     @RequestMapping(value = "/")
     public ModelAndView display(){ // 기본화면
-        List<FishingHoleDTO> list = fishService.display();
+        List<FishingHole> list = fishService.display();
         ModelAndView mav = new ModelAndView();
         mav.addObject("list",list);
         mav.setViewName("index");
@@ -39,14 +39,14 @@ public class myController{
     @RequestMapping(value = "/search")
     public ModelAndView search(@RequestParam("search") String search){ // 검색
         ModelAndView mav = new ModelAndView();
-        List<FishingHoleDTO> list = fishService.search(search);
+        List<FishingHole> list = fishService.search(search);
         mav.addObject("list",list);
         mav.setViewName("index");
         return mav;
     }
 
     @RequestMapping(value = "/board", method = RequestMethod.GET) // 해당 낚시터 디테일 정보
-    public ModelAndView getBoard(@RequestParam("id") int id , @RequestParam(value = "str", required = false) String str){
+    public ModelAndView getBoard(@RequestParam("id") Integer id , @RequestParam(value = "str", required = false) String str){
         ModelAndView mav = new ModelAndView();
         mav.setViewName("detail");
         mav.addObject("data",fishService.viewOne(id));
@@ -56,10 +56,10 @@ public class myController{
     }
 
     @RequestMapping(value ="/board" , method= RequestMethod.POST) // 리뷰 발행
-    public String postBoard(@RequestParam("fish_id") int fish_id, @RequestParam("name") String name,
+    public String postBoard(@RequestParam("fish_id") Integer fish_id, @RequestParam("name") String name,
                                   @RequestParam("title") String title, @RequestParam("content") String content,
                                   @RequestParam("password") String password){
-        ReviewDTO reviewDTO = new ReviewDTO();
+        Review reviewDTO = new Review();
         reviewDTO.setFish_id(fish_id);
         reviewDTO.setName(name);
         reviewDTO.setTitle(title);
@@ -70,8 +70,8 @@ public class myController{
     }
 
     @RequestMapping(value = "/board", method = RequestMethod.DELETE) // 리뷰 삭제
-    public String deleteBoard(@RequestParam("id") int id, @RequestParam("password") String inputPassword,
-                              @RequestParam("fish_id") int fish_id){
+    public String deleteBoard(@RequestParam("id") Long id, @RequestParam("password") String inputPassword,
+                              @RequestParam("fish_id") Integer fish_id){
         ModelAndView mav = new ModelAndView();
         if ( !reviewService.delete(id, inputPassword) )
             return "redirect:board/?id="+ fish_id +"&str=passwordFail"; // 비밀번호가 틀리면 get으로 문자열
@@ -80,10 +80,10 @@ public class myController{
     }
 
     @RequestMapping(value = "/board", method = RequestMethod.PUT) // 리뷰 수정
-    public String updateBoard(@RequestParam("id") int id, @RequestParam("password") String inputPassword,
-                              @RequestParam("fish_id") int fish_id, @RequestParam("title") String title,
+    public String updateBoard(@RequestParam("id") Long id, @RequestParam("password") String inputPassword,
+                              @RequestParam("fish_id") Integer fish_id, @RequestParam("title") String title,
                               @RequestParam("content") String content){
-        if ( !reviewService.update(id, content, title, fish_id,inputPassword) )
+        if ( !reviewService.update(id, content, title,inputPassword) )
             return "redirect:board/?id="+ fish_id +"&str=passwordFail"; // 비밀번호가 틀리면 get으로 문자열
         else
             return "redirect:board/?id="+ fish_id;
