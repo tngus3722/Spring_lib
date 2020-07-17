@@ -38,3 +38,15 @@
     </p>
     
 ![7](https://user-images.githubusercontent.com/32263898/87240135-d8634180-c451-11ea-82f7-6f23198d7f66.PNG)
+
+
+
+<h2> 0712 feedback 개선 </h2>
+<ul>
+  <li>SQL DDL 추가</li>
+  <li>directory 이름 수정 DTO -> Domain</li>
+  <li>file 이름 수정 ( fishingHoleDTO -> FishingHole, reviewDTO -> Review )</li> 
+  <li>Review int id -> Review Long id 수정, FisingHold int id -> Integer id  ( wrapper class) , fishing hold id 는 744개로 고정된 숫자 </li>
+  <li>Review id가 long으로 바뀌었으니 mysql SMALLINT id -> BIGINT id로 수정</li>
+  <li>date -> created_at, update_at으로 나눔</li>
+</ul>
