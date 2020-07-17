@@ -49,4 +49,5 @@
   <li>Review int id -> Review Long id 수정, FisingHold int id -> Integer id  ( wrapper class) , fishing hold id 는 744개로 고정된 숫자 </li>
   <li>Review id가 long으로 바뀌었으니 mysql SMALLINT id -> BIGINT id로 수정</li>
   <li>date -> created_at, update_at으로 나눔</li>
+  <li>myController -> FishingHoleController, ReviewController로 </li>
 </ul>
