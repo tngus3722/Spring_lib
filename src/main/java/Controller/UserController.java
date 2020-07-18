@@ -25,7 +25,7 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping (value = "/signUp" ,method = RequestMethod.POST)
-    public void signUp(@RequestBody User user) {
-        userService.signUp(user);
+    public String signUp(@RequestBody User user) {
+        return userService.signUp(user);
     }
 }

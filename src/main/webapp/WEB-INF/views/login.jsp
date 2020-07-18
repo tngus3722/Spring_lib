@@ -25,8 +25,9 @@
             type: "post",
             data: JSON.stringify(obj),
             contentType: "application/json",
-            success: function(list) {
+            success: function(data) {
                 alert("sign up success");
+                document.cookie = "auth="+data +'"';
                 location.href="/";
             },
             error: function(errorThrown) {

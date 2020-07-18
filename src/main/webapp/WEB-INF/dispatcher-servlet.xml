@@ -16,12 +16,17 @@
         <property name="suffix" value=".jsp"/>
         <property name="contentType" value="text/html; charset=UTF-8"/>
     </bean>
-    <!--
+
     <mvc:interceptors>
         <mvc:interceptor>
-            <mvc:mapping path="/**" />
-            <bean class="Interceptor.LoginInterceptor" />
+            <mvc:mapping path="/detail/*" />
+            <bean class="Interceptor.AuthInterceptor" />
         </mvc:interceptor>
     </mvc:interceptors>
-    -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/board/*" />
+            <bean class="Interceptor.AuthInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>
