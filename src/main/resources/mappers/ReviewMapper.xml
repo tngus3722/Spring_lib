@@ -9,7 +9,7 @@
     </select>
 
     <insert id="insert">
-        INSERT INTO review(fish_id, name, title, content, password) VALUES(#{fish_id}, #{name}, #{title}, #{content}, #{password})
+        INSERT INTO review(fish_id, name, title, content) VALUES(#{fish_id}, #{name}, #{title}, #{content})
     </insert>
 
     <delete id="delete">

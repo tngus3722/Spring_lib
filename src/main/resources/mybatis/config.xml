@@ -7,5 +7,6 @@
     <typeAliases>
         <typeAlias type="Domain.FishingHole" alias="fish"/>
         <typeAlias type="Domain.Review" alias="review"/>
+        <typeAlias type="Domain.User" alias="user"/>
     </typeAliases>
 </configuration>

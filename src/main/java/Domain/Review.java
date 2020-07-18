@@ -10,7 +10,6 @@ public class Review {
     private String content;
     private Date created_at;
     private Date update_at;
-    private String password;
 
     public Date getUpdate_at() {
         return update_at;
@@ -18,14 +17,6 @@ public class Review {
 
     public void setUpdate_at(Date update_at) {
         this.update_at = update_at;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public Review(){};

@@ -11,6 +11,5 @@ public interface ReviewMapper {
     public List<Review> display(Integer fish_id);
     public void insert(Review reviewDTO);
     public void delete(Long id);
-    public String getPasswordById(Long id);
     public void update(@Param("title") String title, @Param("content") String content, @Param("id") Long id);
 }

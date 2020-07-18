@@ -15,28 +15,13 @@
             transform: translate(-50%,-50%);
         }
     </style>
-    <script>
-        var str ="${str}";
-        if ( str.length > 1 ){
-            alert(str);
-        }
-    </script>
 </head>
 <body>
 <h1><a href="/">전국낚시터 정보</a></h1>
-<div id="map"style="width:500px;height:400px;"></div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=114864cacc0f8e3d5daf86f9122b9777"></script>
-<script>
-    var latitude = "${data.getLatitude()}";
-    var longitude = "${data.getLongitude()}";
-    var container = document.getElementById('map');
-    var options = { //지도를 생성할 때 필요한 기본 옵션
-        center: new kakao.maps.LatLng(latitude, longitude),
-        level: 3 //지도의 레벨(확대, 축소 정도)
-    };
-    var map = new kakao.maps.Map(container, options);
-</script>
-<table border="1" align="center">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<div id="map"style="width:500px;height:400px;"></div>
+<table id="detail_table" border="1" align="center">
     <tr>
         <td>낚시터 이름</td>
         <td>낚시터 주소</td>
@@ -46,18 +31,11 @@
         <td>주요 어종</td>
         <td>데이터 기준 일자</td>
     </tr>
-    <tr>
-        <td>${data.getName()}</td>
-        <td>${data.getAddress()}</td>
-        <td>${data.getCategory()}}</td>
-        <td>${data.getLatitude()}</td>
-        <td>${data.getLongitude()}</td>
-        <td>${data.getFish_species()}</td>
-        <td>${data.getDate()}</td>
-    </tr>
 </table>
+
 <hr>
-<table align="center" border="1" bgcolor="aqua">
+
+<table align="center" border="1" id="review" >
     <tr>
         <td>게시글 번호</td>
         <td>작성자</td>
@@ -66,44 +44,157 @@
         <td>생성 날짜</td>
         <td>업데이트 날짜</td>
     </tr>
-    <c:forEach var="i" items="${list}">
-        <tr>
-            <td>${i.getId()}</td>
-            <td>${i.getName()}</td>
-            <td>${i.getTitle()}</td>
-            <td>${i.getContent()}</td>
-            <td>${i.getCreated_at()}</td>
-            <td>${i.getUpdate_at()}</td>
-            <td>
-                <form method="post" action="/board">
-                    <input type="hidden" value="PUT" name="_method">
-                    제목<input type="text" name="title">
-                    내용<input type="text" name="content">
-                    비밀번호<input type="password" name="password">
-                    <input type="submit" value="수정">
-                    <input type="hidden" name="id" value="${i.getId()}">
-                    <input type="hidden" name="fish_id" value="${i.getFish_id()}">
-                </form>
-            </td>
-            <td>
-                <form method="post" action="/board">
-                    <input type="hidden" value="DELETE" name="_method">
-                    비밀번호<input type="password" name="password">
-                    <input type="submit" value="삭제">
-                    <input type="hidden" name="id" value="${i.getId()}">
-                    <input type="hidden" name="fish_id" value="${i.getFish_id()}">
-                </form></td>
-        </tr>
-    </c:forEach>
 </table>
+<div>
+    게시글 번호<input type="text" id="update_id">
+    수정 제목<input type="text" id="update_title">
+    수정 내용<input type="text" id="update_content">
+    <button onclick="update()" type="button">수정</button>
+</div>
 <hr>
-<form method="post" action="/board">
-    작성자<input type="text" name="name">
-    제목<input type="text" name="title">
-    내용<input type="text" name="content" width="200" height="200">
-    비밀번호<input type="password" name="password">
-    <input type="hidden" name="fish_id" value="${data.getId()}">
-    <input type="submit" value="작성">
-</form>
+<div id="post_form" name ="post_form" method="post">
+    작성자<input type="text" name="name" id="post_name">
+    제목<input type="text" name="title" id="post_title">
+    내용<input type="text" name="content" width="200" height="200" id="post_content">
+    <input type="hidden" name="fish_id" value="${param.id}" id="post_fish_id">
+    <button onclick="post()" type="button">전송</button>
+</div>
+
+<script>
+    $( document ).ready(function(){
+        var param = ${param.id};
+        function dateFormat(d) {
+            return ((d.getMonth() + 1) + "").padStart(2, "0")
+                + "/" + (d.getDate() + "").padStart(2, "0")
+                + "/" + d.getFullYear();
+        }
+        $.ajax({
+            url: "/board?id="+encodeURI(param),
+            type: "get",
+            dataType: "json",
+            contentType: "application/json",
+            success: function(list) {
+                var str;
+                for( var i=0; i<list.length; i++) {
+                    str +=
+                        '<tr>'
+                            +'<td>' + list[i].id + '</td>'
+                            +'<td>' + list[i].name + '</td>'
+                            +'<td>' + list[i].title + '</td>'
+                            +'<td>' + list[i].content + '</td>'
+                            +'<td>' + dateFormat(new Date(list[i].created_at)) + '</td>'
+                            +'<td>' + dateFormat(new Date(list[i].update_at))  + '</td>'
+                            +'<td><input type="button" value="삭제" onclick="del(' + list[i].id +')"></td>'
+                        +'</tr>';
+                }
+                $('#review').append(str);
+            },
+            error: function(errorThrown) {
+                alert(errorThrown.statusText);
+            }
+        });
+    });
+</script>
+<script>
+    $( document ).ready(function(){
+        var param = ${param.id};
+        $.ajax({
+            url: "/fish_detail?id="+encodeURI(param),
+            type: "get",
+            dataType: "json",
+            contentType: "application/json",
+            success: function(data){
+                var latitude = data.latitude;
+                var longitude = data.longitude;
+                var container = document.getElementById('map');
+                var options = { //지도를 생성할 때 필요한 기본 옵션
+                    center: new kakao.maps.LatLng(latitude, longitude),
+                    level: 3 //지도의 레벨(확대, 축소 정도)
+                };
+                var map = new kakao.maps.Map(container, options);
+                function dateFormat(d) {
+                    return ((d.getMonth() + 1) + "").padStart(2, "0")
+                        + "/" + (d.getDate() + "").padStart(2, "0")
+                        + "/" + d.getFullYear();
+                }
+                var str =
+                    '<tr>'
+                    + '<td>' + data.name +'</td>'
+                    + '<td>' + data.address + '</td>'
+                    +'<td>' + data.category + '</td>'
+                    +'<td>'+ data.latitude+'</td>'
+                    +'<td>' + data.longitude + '</td>'
+                    +'<td>' + data.fish_species + '</td>'
+                    +'<td>' + dateFormat(new Date(data.date)) + '</td>'
+                    +'</tr>';
+                $('#detail_table').append(str);
+            },
+            error: function(errorThrown) {
+                alert(errorThrown.statusText);
+            }
+        });
+    });
+</script>
+<script>
+    function post() {
+        var name = $("#post_name").val();
+        var title = $("#post_title").val();
+        var content = $("#post_content").val();
+        var fish_id = $("#post_fish_id").val();
+        var obj = { "name": name, "title": title, "content" : content, "fish_id" : fish_id };
+        $.ajax({
+            url: "<c:url value="/board" />",
+            type: "post",
+            data: JSON.stringify(obj),
+            contentType: "application/json",
+            success: function(data) {
+                location.reload();
+            },
+            error: function(errorThrown) {
+                alert(errorThrown.statusText);
+            }
+        });
+    }
+
+</script>
+<script>
+    function del(id) {
+        var obj = { "id":id };
+        $.ajax({
+            url: "<c:url value="/board" />",
+            type: "delete",
+            data: JSON.stringify(obj),
+            contentType: "application/json",
+            success: function(data) {
+                location.reload();
+            },
+            error: function(errorThrown) {
+                alert(errorThrown.statusText);
+            }
+        });
+    }
+
+</script>
+<script>
+    function update() {
+        var id = $("#update_id").val();
+        var title = $("#update_title").val();
+        var content = $("#update_content").val();
+        var obj = { "id": id, "title": title, "content" : content};
+        $.ajax({
+            url: "<c:url value="/board" />",
+            type: "put",
+            data: JSON.stringify(obj),
+            contentType: "application/json",
+            success: function(data) {
+                location.reload();
+            },
+            error: function(errorThrown) {
+                alert(errorThrown.statusText);
+            }
+        });
+    }
+
+</script>
 </body>
 </html>
