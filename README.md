@@ -50,4 +50,6 @@
   <li>Review id가 long으로 바뀌었으니 mysql SMALLINT id -> BIGINT id로 수정</li>
   <li>date -> created_at, update_at으로 나눔</li>
   <li>myController -> FishingHoleController, ReviewController로 </li>
+  <li>user 구현할 예정이므로 review table password 삭제</li>
+  <li>ajax와 responsebody를 이용하여 구현 ( modelandview를 걷어냄 ) </li>
 </ul>
