@@ -10,17 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 public class AuthInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        boolean check = false;
-        Cookie[] cookies = request.getCookies();
-        for(int i=0; i<cookies.length; i++){
-            System.out.println(cookies[i].getName());
-            if ( cookies[i].getName().equals("auth") )
-                check = true;
-        }
-        if (!check){
-            response.sendRedirect("/login");
-        }
-        System.out.println("pre intercept");
         return super.preHandle(request, response, handler);
     }
 
