@@ -67,3 +67,10 @@
   <li>ajax와 responsebody를 이용하여 구현 ( modelandview를 걷어냄 ) </li>
   <li>user 구현 --> ongoing</li>
 </ul>
+
+<h2>0719 feedback 개선</h2>
+<ul>
+  <li>통일성을 위해 mysql fishing_hole SMALLINT -> BIGINT, java FishingHold Integer -> Long 변경</li>
+  <li>user login 구현</li>
+  <li>password bcrypt암호화 구현</li>
+</ul>  
