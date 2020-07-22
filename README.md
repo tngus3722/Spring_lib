@@ -73,5 +73,7 @@
   <li>통일성을 위해 mysql fishing_hole SMALLINT -> BIGINT, java FishingHold Integer -> Long 변경</li> 
   <li>client side에서 request payload에 비밀번호가 그대로 노출되길래 단방향 hash 추가 </li>
   <li>password bcrypt암호화 구현</li>
-  <li>cookie와 jwt token을 이용한 user 기능 구현 <br> (view (hashed) -> Service(bcrypt) -> JWT token 생성 -> cookie 발급 -> cookie의 token payload 복호화 한 값이 database 정보와 동일한가?)</li>
+  <li>cookie와 jwt token을 이용한 user 기능 구현 <br> view (hashed) -> Server(bcrypt) -> JWT token 생성 -> cookie 발급  <br>  view (cookie) -> server (cookie의 token payload 복호화 한 값이 database 정보와 동일한가?)</li>
+  
+  <li>cookie의 CSRF취약점 개선 -> ongoing</li>
 </ul>  
