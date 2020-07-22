@@ -74,7 +74,7 @@
   <li>client side에서 request payload에 비밀번호가 그대로 노출됨을 확인 -> 단방향 hash 추가 </li>
   <li>password bcrypt암호화 구현</li>
   <li>cookie와 jwt token을 이용한 user 기능 구현 <br> view (hashed) -> Server(bcrypt) -> JWT token 생성 -> cookie 발급  <br>  view (cookie) -> server (cookie의 token payload 복호화 한 값이 database 정보와 동일한가?)</li>
-  <li>ResponseEntity를 통해 상태정보 </li>
+  <li>ResponseEntity </li>
   <li>AWS EC2 hosting</li>
   <li>cookie의 CSRF취약점 개선 -> ongoing</li>
 </ul>  
