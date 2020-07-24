@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Review {
     private Long id;
-    private Integer fish_id;
+    private Long fish_id;
     private String name;
     private String title;
     private String content;
@@ -29,11 +29,11 @@ public class Review {
         this.id = id;
     }
 
-    public Integer getFish_id() {
+    public Long getFish_id() {
         return fish_id;
     }
 
-    public void setFish_id(Integer fish_id) {
+    public void setFish_id(Long fish_id) {
         this.fish_id = fish_id;
     }
 

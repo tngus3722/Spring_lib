@@ -13,6 +13,6 @@ public interface FishMapper {
 
     List<FishingHole> search(String search);
 
-    FishingHole viewOne(Integer id);
+    FishingHole viewOne(Long id);
 }
 

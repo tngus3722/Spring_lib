@@ -11,8 +11,7 @@
 </head>
 <body>
 <h1><a href="http://localhost:8080/">전국낚시터 정보</a></h1>
-
-
+<a href="/login">로그인</a> <button onclick="logOut()" type="button">로그아웃</button><br>
 <input type="text" name="search" id="search">
 <button onclick="search()" type="button">search</button>
 
@@ -54,6 +53,20 @@
                     str += '<tr>' + '<td>'+'<a href="/detail/?id=' + list[i].id + '">' + list[i].name +'</a>'+ '</td>' + '<td>' + list[i].address + '</td>' + '</tr>';
             }
                 $('table').append(str);
+            },
+            error: function(errorThrown) {
+                alert(errorThrown.statusText);
+            }
+        });
+    };
+</script>
+<script>
+    function logOut(){
+        $.ajax({
+            url: "<c:url value="/logOut" />",
+            type: "post",
+            success: function(data) {
+                alert("logout success");
             },
             error: function(errorThrown) {
                 alert(errorThrown.statusText);

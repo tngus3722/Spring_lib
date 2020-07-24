@@ -1,5 +1,5 @@
 CREATE TABLE fishing_hole(
-                             id SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+                             id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                              name VARCHAR(40),
                              category VARCHAR(40),
                              address VARCHAR(80),

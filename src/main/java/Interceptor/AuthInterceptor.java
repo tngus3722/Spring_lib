@@ -1,5 +1,7 @@
 package Interceptor;
 
+import Service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -8,8 +10,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class AuthInterceptor extends HandlerInterceptorAdapter {
+
+    @Autowired
+    UserService userService;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        boolean check = false;
+        String url = request.getRequestURL().toString();
+
+        Cookie[] cookies = request.getCookies();
+        for (int i=0; i<cookies.length; i++){
+            if ( cookies[i].getName().equals("token")){ //token이 있다면
+                if ( userService.isValidToken(cookies[i].getValue())){ // cookie의 jwt token이 valid하다면
+                    check = true; // true
+                }
+            }
+        }
+        if ( !check && !url.contains("login")) //token 없고, login창을 요구한것이 아니라면
+            response.sendRedirect("/login"); // 로그인 화면으로
+
+        if ( check && url.contains("login")){ // token이 있고, login창을 요청한다면
+            response.sendRedirect("/"); // 처음화면으로
+        }
         return super.preHandle(request, response, handler);
     }
 

@@ -5,6 +5,10 @@
 
 <mapper namespace="Repository.UserMapper">
     <insert id="signUp">
-        INSERT INTO user(name, password, token ) VALUES(#{name}, #{password}, #{token} )
+        INSERT INTO user(name, password ) VALUES(#{name}, #{password} )
     </insert>
+
+    <select id="getUserByName" resultType="user">
+        SELECT *  FROM user WHERE name = #{name}
+    </select>
 </mapper>

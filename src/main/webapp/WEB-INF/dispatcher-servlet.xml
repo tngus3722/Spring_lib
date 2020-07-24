@@ -28,5 +28,12 @@
             <mvc:mapping path="/board/*" />
             <bean class="Interceptor.AuthInterceptor" />
         </mvc:interceptor>
-    </mvc:interceptors>
+    </mvc:interceptors><mvc:interceptors>
+    <mvc:interceptor>
+        <mvc:mapping path="/login" />
+        <bean class="Interceptor.AuthInterceptor" />
+    </mvc:interceptor>
+</mvc:interceptors>
+
+
 </beans>
