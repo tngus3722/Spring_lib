@@ -23,4 +23,8 @@
     <update id="update">
         UPDATE review SET title=#{title},content=#{content},update_at=now() WHERE id=#{id}
     </update>
+
+    <select id="getNameById" resultType="String">
+        SELECT name FROM review WHERE id = #{id}
+    </select>
 </mapper>

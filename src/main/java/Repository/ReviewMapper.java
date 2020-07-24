@@ -12,4 +12,5 @@ public interface ReviewMapper {
     public void insert(Review reviewDTO);
     public void delete(Long id);
     public void update(@Param("title") String title, @Param("content") String content, @Param("id") Long id);
+    public String getNameById(Long id);
 }

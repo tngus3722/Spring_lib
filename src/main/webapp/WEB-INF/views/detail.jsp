@@ -53,7 +53,6 @@
 </div>
 <hr>
 <div id="post_form" name ="post_form" method="post">
-    작성자<input type="text" name="name" id="post_name">
     제목<input type="text" name="title" id="post_title">
     내용<input type="text" name="content" width="200" height="200" id="post_content">
     <input type="hidden" name="fish_id" value="${param.id}" id="post_fish_id">
@@ -137,11 +136,10 @@
 </script>
 <script>
     function post() {
-        var name = $("#post_name").val();
         var title = $("#post_title").val();
         var content = $("#post_content").val();
         var fish_id = $("#post_fish_id").val();
-        var obj = { "name": name, "title": title, "content" : content, "fish_id" : fish_id };
+        var obj = { "title": title, "content" : content, "fish_id" : fish_id };
         $.ajax({
             url: "<c:url value="/board" />",
             type: "post",
@@ -154,8 +152,7 @@
                 alert(errorThrown.statusText);
             }
         });
-    }
-
+    };
 </script>
 <script>
     function del(id) {
@@ -165,15 +162,19 @@
             type: "delete",
             data: JSON.stringify(obj),
             contentType: "application/json",
-            success: function(data) {
-                location.reload();
-            },
-            error: function(errorThrown) {
-                alert(errorThrown.statusText);
+            statusCode: {
+                200:function(data) {
+                    alert(data );
+                    location.reload();
+                },
+                403:function (data) {
+                    alert(JSON.stringify(data.responseText ))
+                }
             }
+        }).done(function(data){
+        }).fail(function ( data) {
         });
-    }
-
+    };
 </script>
 <script>
     function update() {
@@ -186,15 +187,19 @@
             type: "put",
             data: JSON.stringify(obj),
             contentType: "application/json",
-            success: function(data) {
-                location.reload();
-            },
-            error: function(errorThrown) {
-                alert(errorThrown.statusText);
+            statusCode: {
+                200:function(data) {
+                    alert(data );
+                    location.reload();
+                },
+                403:function (data) {
+                    alert(JSON.stringify(data.responseText ))
+                }
             }
+        }).done(function(data){
+        }).fail(function ( data) {
         });
-    }
-
+    };
 </script>
 </body>
 </html>
