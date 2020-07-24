@@ -74,7 +74,9 @@
   <li>client side에서 request payload에 비밀번호가 그대로 노출됨을 확인 -> 단방향 hash 추가 </li>
   <li>password bcrypt암호화 구현</li>
   <li>cookie와 jwt token을 이용한 user 기능 구현 <br> view (hashed) -> Server(bcrypt) -> JWT token 생성 -> cookie 발급  <br>  view (cookie) -> server (cookie의 token payload 복호화 한 값이 database 정보와 동일한가?)</li>
-  <li>ResponseEntity </li>
+  <li>ResponseEntity 추가 </li>
+  <li>기존 게시판에 작성자를 직접 입력했지만, login한 user로 자동으로 작성되도록 수정</li>
   <li>AWS EC2 hosting</li>
   <li>cookie의 CSRF취약점 개선 -> ongoing</li>
+  <li>AOP를 이용한 log 기능 --> ongoing </li>
 </ul>  
