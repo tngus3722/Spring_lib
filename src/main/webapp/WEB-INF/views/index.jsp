@@ -10,8 +10,8 @@
     </style>
 </head>
 <body>
-<h1><a href="http://localhost:8080/">전국낚시터 정보</a></h1>
-<a href="/login">로그인</a> <button onclick="logOut()" type="button">로그아웃</button><br>
+<h1><a href="/fish">전국낚시터 정보</a></h1>
+<a href="/fish/login">로그인</a> <button onclick="logOut()" type="button">로그아웃</button><br>
 <input type="text" name="search" id="search">
 <button onclick="search()" type="button">search</button>
 
@@ -21,14 +21,14 @@
 <script>
     $( document ).ready(function(){
         $.ajax({
-            url: "<c:url value="/display" />",
+            url: "/fish/display",
             type: "get",
             dataType: "json",
             contentType: "application/json",
             success: function(list) {
                 var str = '<tr> + <td>낚시터 이름</td><td>낚시터 주소</td> </tr>';
                 for( var i=0; i<list.length; i++) {
-                    str += '<tr>' + '<td>'+'<a href="/detail/?id=' + list[i].id + '">' + list[i].name +'</a>'+ '</td>' + '<td>' + list[i].address + '</td>' + '</tr>';
+                    str += '<tr>' + '<td>'+'<a href="/fish/detail/?id=' + list[i].id + '">' + list[i].name +'</a>'+ '</td>' + '<td>' + list[i].address + '</td>' + '</tr>';
                 }
                 $('table').append(str);
             },
@@ -42,7 +42,7 @@
     function search(){
         var search = $("#search").val();
         $.ajax({
-            url: "/search?search="+encodeURI(search),
+            url: "/fish/search?search="+encodeURI(search),
             type: "get",
             dataType: "json",
             contentType: "application/json",
@@ -50,7 +50,7 @@
                 var str = '<tr> + <td>낚시터 이름</td><td>낚시터 주소</td> </tr>';
                 $('table').empty();
                 for( var i=0; i<list.length; i++) {
-                    str += '<tr>' + '<td>'+'<a href="/detail/?id=' + list[i].id + '">' + list[i].name +'</a>'+ '</td>' + '<td>' + list[i].address + '</td>' + '</tr>';
+                    str += '<tr>' + '<td>'+'<a href="/fish/detail/?id=' + list[i].id + '">' + list[i].name +'</a>'+ '</td>' + '<td>' + list[i].address + '</td>' + '</tr>';
             }
                 $('table').append(str);
             },
@@ -63,7 +63,7 @@
 <script>
     function logOut(){
         $.ajax({
-            url: "<c:url value="/logOut" />",
+            url: "/fish/logOut",
             type: "post",
             success: function(data) {
                 alert("logout success");
