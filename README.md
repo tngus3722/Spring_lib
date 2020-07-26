@@ -7,6 +7,7 @@
   <h2>Spring</h2>
   <h2>REST</h2>
   <h2>mybatis를 이용한 CRUD</h2>
+  <h2>공공 data, openAPI 활용</h2>
   
 ![1](https://user-images.githubusercontent.com/32263898/87240292-4d834680-c453-11ea-9738-86f6d1d0836b.PNG)
   
