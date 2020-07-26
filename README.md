@@ -23,6 +23,9 @@
     <p>경기도 검색시 주소지에 "경기도"가 포함된 data들을 출력한다</p>
     
 ![6](https://user-images.githubusercontent.com/32263898/87240134-d7caab00-c451-11ea-958a-1307cf262873.PNG)
+   
+![sdasd](https://user-images.githubusercontent.com/32263898/88478903-c7085200-cf86-11ea-9fcd-325700533c46.PNG)
+
    <h2>세부 결과 화면</h2>
     <p>원하는 데이터를 클릭시 해당 데이터의 정보 출력를 출력한다<br>
     kakao map api를 통한 위치 정보를 제공한다<br>
