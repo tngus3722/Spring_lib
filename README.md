@@ -1,38 +1,18 @@
 # Fish
 
-프로젝트 개요
+프로젝트 개요<br>
 전국 낚시터를 검색, 리뷰, 지도 기능을 제공하는 웹 서비스 
 
 <h1>세부 기술</h1>
-  <h2>Spring MVC</h2>
-
+  <h2>Spring</h2>
+  <h2>REST</h2>
   <h2>mybatis를 이용한 CRUD</h2>
-    리뷰 글 작성<br>
-    리뷰 글 삭제<br>
-    리뷰 글 수정<br>
-    리뷰 글 조회<br>
-    낚시터 위치 검색<br>
-    해당 낚시터 정보 조회<br>
+  <h2>공공 data, openAPI 활용</h2>
+  
 ![1](https://user-images.githubusercontent.com/32263898/87240292-4d834680-c453-11ea-9738-86f6d1d0836b.PNG)
   
 ![2](https://user-images.githubusercontent.com/32263898/87240024-971e6200-c450-11ea-95bd-4860d2f3dfc0.PNG)
-  <h2>database</h2>
-  
-   <p>
-  *small : int 0~65536, 2bit 사용 -> int보다 적당한 크기, 작은 부하라고 생각해서 사용<br>
-  *text : index를 필요하지 않고 비교적 장문이므로 text사용
-  </p>
-  
-![3](https://user-images.githubusercontent.com/32263898/87240025-984f8f00-c450-11ea-960d-66651053b1fc.PNG)
-    
-   <p>
-  *decimal : 정확한 실수 data를 표현하기위해 decimal 사용<br>
-  주어진 데이터 양식<br>
-  위도 -> xx.(10자리)<br>
-  경도 -> xxx.(10자리)<br>
-  </p>
-  
-![4](https://user-images.githubusercontent.com/32263898/87240026-98e82580-c450-11ea-9e9d-5e2645a81878.PNG)
+ 
 
   <h2> 인덱스 화면</h2>
     <p>검색 form과 table로 이루어진 data들이 출력된다</p>
@@ -49,8 +29,7 @@
     리뷰 조회, 삭제, 수정, 등록을 할 수 있다
     리뷰를 등록할 때 비밀번호 값으로 수정, 삭제를 할 수 있다.
     </p>
-    
-![7](https://user-images.githubusercontent.com/32263898/87240135-d8634180-c451-11ea-82f7-6f23198d7f66.PNG)
+
 
 
 
@@ -77,7 +56,7 @@
   <li>ResponseEntity 추가 </li>
   <li>기존 게시판에 작성자를 직접 입력했지만, login한 user로 자동으로 작성되도록 수정</li>
   <li>수정, 삭제도 login 한 user가 아니라면 불가능하도록 수정</li>
-  <li>AWS EC2 hosting</li>
+  <li>AWS EC2 hosting <br> http://3.23.219.40:8080/fish/</li>
   <li>cookie의 CSRF취약점 개선 -> ongoing</li>
   <li>AOP를 이용한 log 기능 --> ongoing </li>
 </ul>  
