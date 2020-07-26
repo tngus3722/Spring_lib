@@ -29,8 +29,7 @@
     리뷰 조회, 삭제, 수정, 등록을 할 수 있다
     리뷰를 등록할 때 비밀번호 값으로 수정, 삭제를 할 수 있다.
     </p>
-    
-![7](https://user-images.githubusercontent.com/32263898/87240135-d8634180-c451-11ea-82f7-6f23198d7f66.PNG)
+
 
 
 
@@ -57,7 +56,7 @@
   <li>ResponseEntity 추가 </li>
   <li>기존 게시판에 작성자를 직접 입력했지만, login한 user로 자동으로 작성되도록 수정</li>
   <li>수정, 삭제도 login 한 user가 아니라면 불가능하도록 수정</li>
-  <li>AWS EC2 hosting</li>
+  <li>AWS EC2 hosting <br> http://3.23.219.40:8080/fish/</li>
   <li>cookie의 CSRF취약점 개선 -> ongoing</li>
   <li>AOP를 이용한 log 기능 --> ongoing </li>
 </ul>  
