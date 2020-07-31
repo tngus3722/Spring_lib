@@ -3,14 +3,14 @@ package Domain;
 import java.util.Date;
 
 public class Review {
-    private Long id;
-    private Long fish_id;
-    private Long user_id;
-    private String writer;
-    private String title;
-    private String content;
-    private Date created_at;
-    private Date update_at;
+    private Long id; // 리뷰 id
+    private Long fish_id; // 리뷰 된 낚시터 id
+    private Long user_id; // 리뷰 한 user id
+    private String writer; // 작성자
+    private String title; // 제목
+    private String content; // 내용
+    private Date created_at; // 게시 날짜
+    private Date update_at; // 수정 날짜
 
     public String getWriter() {
         return writer;

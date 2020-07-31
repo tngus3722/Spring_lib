@@ -25,16 +25,16 @@ public class ReviewController {
     @RequestMapping(value ="/board" , method= RequestMethod.POST) // 해당 낚시터 리뷰 발행
     public ResponseEntity postBoard(@RequestBody Review review, HttpServletRequest request){
         reviewService.insert(review, request);
-        return new ResponseEntity(HttpStatus.CREATED);
+        return new ResponseEntity(HttpStatus.CREATED); // 201 httpstatus
     }
 
     @ResponseBody
     @RequestMapping(value = "/board", method = RequestMethod.DELETE) // 해당 낚시터 리뷰 삭제
     public ResponseEntity deleteBoard(@RequestBody Review review,  HttpServletRequest request){
-        if ( reviewService.delete(review, request) )
+        if ( reviewService.delete(review, request) ) // 성공했다면
             return new ResponseEntity("delete success" , HttpStatus.OK);
-        else
-            return new ResponseEntity("delete fail",HttpStatus.FORBIDDEN);
+        else //실패했다면
+            return new ResponseEntity("delete fail",HttpStatus.FORBIDDEN); // 권한없음을 표시
     }
 
     @ResponseBody

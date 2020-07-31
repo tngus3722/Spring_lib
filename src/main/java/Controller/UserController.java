@@ -29,7 +29,7 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping (value = "/signUp" ,method = RequestMethod.POST)
-    public ResponseEntity signUp(@RequestBody User user) {
+    public ResponseEntity signUp(@RequestBody User user) { // 회원가입
         userService.signUp(user);
         return new ResponseEntity(HttpStatus.OK);
     }
@@ -37,7 +37,7 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping(value = "/logIn" , method = RequestMethod.POST)
-    public ResponseEntity logIn(@RequestBody User user, HttpServletResponse response){
+    public ResponseEntity logIn(@RequestBody User user, HttpServletResponse response){ // 로그인
         if ( userService.logIn(user, response) ) // 인증성공
             return new ResponseEntity("loing success",HttpStatus.OK);
         else // 인증실패
@@ -46,7 +46,7 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping(value =  "/logOut")
-    public ResponseEntity logOut(HttpServletResponse response){
+    public ResponseEntity logOut(HttpServletResponse response){ // 로그아웃
         userService.logOut(response);
         return new ResponseEntity(HttpStatus.OK);
     }

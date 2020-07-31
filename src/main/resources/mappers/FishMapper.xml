@@ -11,10 +11,12 @@
         select * from fishing_hole
     </select>
 
+    <!--There is no getter for property named 'search' in 'class java.lang.String' error 가 난다 search를 그대로 사용하면  -->
+    <!-- ${}도 동적쿼리처럼 내부적으로 getter를 통해 작동하는것 같음  -> 해결방법 ( 1. getter가 있는 객체에 담아 넘긴다, 2.임의변수 value를 사용한다) -->
     <select id="search" resultType="fish">
         select * from fishing_hole where address like '%${value}%'
     </select>
-    <!--# -> preparedStatement 내부적으로 진행됨, 파싱된 sql은 재활용됨 , ''자동삽입 -->
+    <!--# -> preparedStatement 내부적으로 진행됨, 파싱된 sql은 재활용됨 , 문자열처리 = ''자동삽입 -->
     <!--$ -> parameter가 그대로 들어감, 재활용 x, sql injection 위험-->
     <select id="viewOne" resultType="fish">
         select * from fishing_hole where id=#{id}

@@ -19,7 +19,7 @@ public class FishingHoleContoller {
 
     @ResponseBody
     @RequestMapping(value = "/data2db")
-    public ResponseEntity data2db(){
+    public ResponseEntity data2db(){ // data2db
         fishService.initial();
         return new ResponseEntity(HttpStatus.OK);
     }

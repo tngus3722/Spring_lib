@@ -3,14 +3,14 @@ package Domain;
 import java.sql.Date;
 
 public class FishingHole {
-    private Long id;
-    private String name;
-    private String category;
-    private String address;
-    private Float latitude;
-    private Float longitude;
-    private String fish_species;
-    private Date date;
+    private Long id; // 낚시터 id
+    private String name; // 낚시터 이름
+    private String category; // 낚시터 유형
+    private String address; // 낚시터 주소
+    private Float latitude; // 낚시터 위도
+    private Float longitude; // 낚시터 경도
+    private String fish_species; // 주요 어종
+    private Date date; // 데이터 입력 일자 ( 공공데이터 기준 )
 
     public FishingHole(){}
 

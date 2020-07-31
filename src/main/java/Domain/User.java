@@ -1,9 +1,9 @@
 package Domain;
 
 public class User {
-    Long id;
-    String name;
-    String password;
+    Long id; // user id
+    String name; // user name
+    String password; // user password
 
     public Long getId() {
         return id;

@@ -17,10 +17,10 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         boolean check = false;
-        String url = request.getRequestURL().toString();
+        String url = request.getRequestURL().toString(); // 요청 url을 String으로 가져옴
 
         Cookie[] cookies = request.getCookies();
-        for (int i=0; i<cookies.length; i++){
+        for (int i=0; i<cookies.length; i++){ // 쿠키들 중에서
             if ( cookies[i].getName().equals("token")){ //token이 있다면
                 if ( userService.isValidToken(cookies[i].getValue())){ // cookie의 jwt token이 valid하다면
                     check = true; // true

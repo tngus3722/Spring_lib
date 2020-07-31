@@ -22,13 +22,13 @@ public class UserService {
 
     private String key = "Mysecretkey"; // secret key
 
-    public boolean isValidToken(String jwt){
+    public boolean isValidToken(String jwt){ // 토큰이 유효한지 검사하는 함수
         Claims claims = Jwts.parser().setSigningKey(key.getBytes()).parseClaimsJws(jwt).getBody();
         Date now = new Date();
         String name = claims.get("name", String.class); // jwt payload -> name
         String password = claims.get("password", String.class); // jwt payload -> password
         Date exp = claims.get("exp", Date.class); // jwt payload -> exp
-        User user = userMapper.getUserByName(name);
+        User user = userMapper.getUserByName(name); // id가 아닌 name으로 하는 이유 -> name은 유니크, 기존함수 재활용
 
         if( exp.getTime() > now.getTime() && user.getName().equals(name) && user.getPassword().equals(password) ){ // 만료시간 유효 & jwt의 내용이 database user 내용과 일치한다면
             return true;
@@ -44,7 +44,7 @@ public class UserService {
         Map<String, Object> payloads = new HashMap<String, Object>(); //payload
         payloads.put("name",user.getName()); // name
         payloads.put("password",user.getPassword()); // password
-        payloads.put("id",userMapper.getUserByName(user.getName()).getId()); // password
+        payloads.put("id",userMapper.getUserByName(user.getName()).getId()); // id 정보를 payload에 넣기위해서는 name으로 부터 user의 id를 조회하여야 한다.
         Long tmp = 11l*1000l * 60l; // 10분
         Date exp = new Date();
         exp.setTime( (exp.getTime() + tmp) ); // 현재시간  + 11분
