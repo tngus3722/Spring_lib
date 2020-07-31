@@ -62,6 +62,11 @@
   <li>기존 게시판에 작성자를 직접 입력했지만, login한 user로 자동으로 작성되도록 수정</li>
   <li>수정, 삭제도 login 한 user가 아니라면 불가능하도록 수정</li>
   <li>AWS EC2 hosting <br> http://3.23.219.40:8080/fish/</li>
-  <li>cookie의 CSRF취약점 개선 -> ongoing</li>
-  <li>AOP를 이용한 log 기능 --> ongoing </li>
 </ul>  
+
+
+<h2>0726 feedback 개선</h2>
+<ul>
+  <li>review name => review user_id 추가, review writer 추가</li>
+</ul>
+  
