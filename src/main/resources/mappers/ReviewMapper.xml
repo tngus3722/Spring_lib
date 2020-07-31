@@ -9,7 +9,7 @@
     </select>
 
     <insert id="insert">
-        INSERT INTO review(fish_id, name, title, content) VALUES(#{fish_id}, #{name}, #{title}, #{content})
+        INSERT INTO review(fish_id, user_id, writer, title, content) VALUES(#{fish_id},#{user_id}, #{writer}, #{title}, #{content})
     </insert>
 
     <delete id="delete">
@@ -24,7 +24,7 @@
         UPDATE review SET title=#{title},content=#{content},update_at=now() WHERE id=#{id}
     </update>
 
-    <select id="getNameById" resultType="String">
-        SELECT name FROM review WHERE id = #{id}
+    <select id="getReviewById" resultType="review">
+        SELECT * FROM review WHERE id = #{id}
     </select>
 </mapper>

@@ -78,7 +78,7 @@
                     str +=
                         '<tr>'
                             +'<td>' + list[i].id + '</td>'
-                            +'<td>' + list[i].name + '</td>'
+                            +'<td>' + list[i].writer + '</td>'
                             +'<td>' + list[i].title + '</td>'
                             +'<td>' + list[i].content + '</td>'
                             +'<td>' + dateFormat(new Date(list[i].created_at)) + '</td>'

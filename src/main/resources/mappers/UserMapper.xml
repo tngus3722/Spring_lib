@@ -11,4 +11,8 @@
     <select id="getUserByName" resultType="user">
         SELECT *  FROM user WHERE name = #{name}
     </select>
+
+    <select id="getIdByName" resultType="Long">
+        SELECT id FROM user WHERE name = #{name}
+    </select>
 </mapper>

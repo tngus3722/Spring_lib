@@ -5,11 +5,20 @@ import java.util.Date;
 public class Review {
     private Long id;
     private Long fish_id;
-    private String name;
+    private Long user_id;
+    private String writer;
     private String title;
     private String content;
     private Date created_at;
     private Date update_at;
+
+    public String getWriter() {
+        return writer;
+    }
+
+    public void setWritter(String writter) {
+        this.writer = writter;
+    }
 
     public Date getUpdate_at() {
         return update_at;
@@ -37,12 +46,13 @@ public class Review {
         this.fish_id = fish_id;
     }
 
-    public String getName() {
-        return name;
+
+    public Long getUser_id() {
+        return user_id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUser_id(Long user_id) {
+        this.user_id = user_id;
     }
 
     public String getTitle() {

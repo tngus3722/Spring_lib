@@ -27,13 +27,13 @@
         password = SHA256(password);
         var obj = {"name" : name, "password":password};
         $.ajax({
-            url: "/fish/signUp",
+            url: "<c:url value="/signUp"/>",
             type: "post",
             data: JSON.stringify(obj),
             contentType: "application/json",
             success: function(data) {
                 alert("sign up success");
-                location.href="/fish";
+                location.href = '/fish';
             },
             error: function(errorThrown) {
                 alert(errorThrown.statusText);
@@ -48,14 +48,14 @@
         password = SHA256(password);
         var obj = {"name" : name, "password":password};
         $.ajax({
-            url: "/fish/logIn",
+            url: "<c:url value="/logIn"/>",
             type: "post",
             data: JSON.stringify(obj),
             contentType: "application/json",
             statusCode: {
                 200:function(data) {
                     alert(data );
-                    location.href = "/fish";
+            location.href = "/fish";
                 },
                 401:function (data) {
                     alert(JSON.stringify(data.responseText ))
