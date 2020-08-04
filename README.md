@@ -63,6 +63,7 @@
   <li>수정, 삭제도 login 한 user가 아니라면 불가능하도록 수정</li>
   <li>AWS EC2 hosting <br> http://3.23.219.40:8080/fish/</li>
   <li>review name => review user_id 추가, review writer 추가</li>
+  <li>review, user 처리 관련 null처리</li>
 </ul>  
 
   
