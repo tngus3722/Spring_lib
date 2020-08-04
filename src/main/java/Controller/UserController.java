@@ -30,8 +30,10 @@ public class UserController {
     @ResponseBody
     @RequestMapping (value = "/signUp" ,method = RequestMethod.POST)
     public ResponseEntity signUp(@RequestBody User user) { // 회원가입
-        userService.signUp(user);
-        return new ResponseEntity(HttpStatus.OK);
+        if (  userService.signUp(user) )
+            return new ResponseEntity(HttpStatus.OK);
+        else
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 
 

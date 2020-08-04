@@ -24,8 +24,10 @@ public class ReviewController {
     @ResponseBody
     @RequestMapping(value ="/board" , method= RequestMethod.POST) // 해당 낚시터 리뷰 발행
     public ResponseEntity postBoard(@RequestBody Review review, HttpServletRequest request){
-        reviewService.insert(review, request);
-        return new ResponseEntity(HttpStatus.CREATED); // 201 httpstatus
+        if ( reviewService.insert(review, request) )
+            return new ResponseEntity("post success",HttpStatus.CREATED); // 201 http status
+        else
+            return new ResponseEntity("input is null",HttpStatus.BAD_REQUEST); // 400 ERROR
     }
 
     @ResponseBody
@@ -40,9 +42,11 @@ public class ReviewController {
     @ResponseBody
     @RequestMapping(value = "/board", method = RequestMethod.PUT) // 해당 낚시터 리뷰 수정
     public ResponseEntity updateBoard(@RequestBody Review review,  HttpServletRequest request){
-        if ( reviewService.update(review, request) )
+        if ( reviewService.update(review, request) == 1 ) // 성공
             return new ResponseEntity("update success" , HttpStatus.OK);
-        else
+        else if ( reviewService.update(review,request) == 2) // 권한없음
             return new ResponseEntity("update fail",HttpStatus.FORBIDDEN);
+        else // NULL 입력
+            return new ResponseEntity("input is null", HttpStatus.BAD_REQUEST);
     }
 }

@@ -145,12 +145,17 @@
             type: "post",
             data: JSON.stringify(obj),
             contentType: "application/json",
-            success: function(data) {
-                location.reload();
-            },
-            error: function(errorThrown) {
-                alert(errorThrown.statusText);
+            statusCode: {
+                201:function(data) {
+                    alert(data );
+                    location.reload();
+                },
+                400:function (data) {
+                    alert(JSON.stringify(data.responseText ))
+                }
             }
+        }).done(function(data){
+        }).fail(function ( data) {
         });
     };
 </script>
@@ -193,7 +198,10 @@
                     location.reload();
                 },
                 403:function (data) {
-                    alert(JSON.stringify(data.responseText ))
+                    alert(JSON.stringify(data.responseText ));
+                },
+                400:function (data) {
+                    alert(JSON.stringify(data.responseText));
                 }
             }
         }).done(function(data){

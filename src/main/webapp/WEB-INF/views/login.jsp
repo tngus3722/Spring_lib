@@ -31,13 +31,17 @@
             type: "post",
             data: JSON.stringify(obj),
             contentType: "application/json",
-            success: function(data) {
-                alert("sign up success");
-                location.href = '/fish';
-            },
-            error: function(errorThrown) {
-                alert(errorThrown.statusText);
+            statusCode: {
+                200:function(data) {
+                    alert("sign up success");
+                    location.href = "/fish";
+                },
+                400:function (data) {
+                    alert("input is null");
+                }
             }
+        }).done(function(data){
+        }).fail(function ( data) {
         });
     };
 </script>

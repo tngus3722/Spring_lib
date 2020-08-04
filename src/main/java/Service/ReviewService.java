@@ -18,6 +18,12 @@ public class ReviewService {
     @Autowired
     private ReviewMapper reviewMapper;
 
+    public boolean isNull(Review review){
+        if ( !"".equals(review.getContent()) && !"".equals(review.getTitle()) )
+            return true;
+        else
+            return false;
+    }
 
     public List<Review> display(Integer fish_id){
         return reviewMapper.display(fish_id);
@@ -36,33 +42,43 @@ public class ReviewService {
         }
         return null;
     }
-    public void insert(Review review, HttpServletRequest request){ // 리뷰삽입
-        Long id = this.getPayloadsToJwt(request).get("id",Long.class); // payload에서 user id 추출
-        String writer = this.getPayloadsToJwt(request).get("name", String.class); // payload에서 user name 추철
-        review.setWritter(writer); // set
-        review.setUser_id(id); // set
-        reviewMapper.insert(review); // 삽입
+    public boolean insert(Review review, HttpServletRequest request){ // 리뷰삽입
+        if ( this.isNull(review)) { // null 이 아니라면
+            Long id = this.getPayloadsToJwt(request).get("id", Long.class); // payload에서 user id 추출
+            String writer = this.getPayloadsToJwt(request).get("name", String.class); // payload에서 user name 추철
+            review.setWritter(writer); // set
+            review.setUser_id(id); // set
+            reviewMapper.insert(review); // 삽입
+            return true;
+        }
+        else
+            return false;
     }
 
     public boolean delete(Review review,  HttpServletRequest request){ // 삭제
-        Long user_id = this.getPayloadsToJwt(request).get("id",Long.class); // payload 에서 가져온 user 정보와
+        Long user_id = this.getPayloadsToJwt(request).get("id",Long.class); // payload 에서 가져온 user id와
         Long reviewedId = this.getReviewById(review.getId()).getUser_id(); // review를 작성한 user의 id가
         if ( user_id == reviewedId) { //같다면
             reviewMapper.delete(review.getId()); //삭제
             return true; //삭제 성공
         }
         else // 다르다면
-            return false; // 삭제 실패ㄴ
+            return false; // 삭제 실패
     }
 
-    public boolean update(Review review,  HttpServletRequest request){ // 수정
-        Long user_id = this.getPayloadsToJwt(request).get("id",Long.class); // payload 에서 가져온 user 정보와
-        Long reviewedId = this.getReviewById(review.getId()).getUser_id();;// review를 작성한 user의 id가
-        if ( user_id == reviewedId) { //같다면
-            reviewMapper.update(review.getTitle(), review.getContent(), review.getId()); // 수정
-            return true; //삭제 성공
+    public int update(Review review,  HttpServletRequest request){ // 수정
+        if ( this.isNull(review)  ) { // 값들이 null이 아니며
+            Long user_id = this.getPayloadsToJwt(request).get("id", Long.class); // payload 에서 가져온 user 정보와
+            Long reviewedId = this.getReviewById(review.getId()).getUser_id();
+            ;// review를 작성한 user의 id가
+            if (user_id == reviewedId) { //같다면
+                reviewMapper.update(review.getTitle(), review.getContent(), review.getId()); // 수정
+                return 1; //수정 성공
+            }
+            else
+                return 2; // 권한없음
         }
-        else // 다르다면
-            return false; // 삭제 실패
+        else
+            return 3; // null
     }
 }
