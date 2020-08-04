@@ -19,10 +19,12 @@ public class ReviewService {
     private ReviewMapper reviewMapper;
 
     public boolean isNull(Review review){
-        if ( !"".equals(review.getContent()) && !"".equals(review.getTitle()) )
-            return true;
-        else
+        if ( "".equals(review.getContent()) )
             return false;
+        else if ( "".equals(review.getTitle()))
+            return false;
+        else
+            return true;
     }
 
     public List<Review> display(Integer fish_id){

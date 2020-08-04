@@ -54,13 +54,16 @@ public class UserService {
     }
 
     public boolean signUp(User user){ // 회원가입
-        if( !"".equals(user.getName()) && !"".equals(user.getPassword())) {
+        if( "".equals(user.getName()) ) {
+            return false;
+        }
+        else if ( "".equals(user.getPassword()))
+            return false;
+        else{
             user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt())); //bcrypt 암호화
             userMapper.signUp(user);
             return true;
         }
-        else
-            return false;
     }
 
     public boolean logIn(User user, HttpServletResponse response){
