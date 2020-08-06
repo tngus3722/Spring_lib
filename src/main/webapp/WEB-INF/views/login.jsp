@@ -24,7 +24,7 @@
     function signUp(){
         var name = $("#name").val();
         var password = $("#password").val();
-        if (password != null && password == "") {
+        if (password == null && password == "") {
             password = SHA256(password);
         }
         var obj = {"name" : name, "password":password};
@@ -41,7 +41,7 @@
                 400:function (data) {
                     alert("input is null");
                 },
-                401:function (data) {
+                403:function (data) {
                     alert(JSON.stringify(data.responseText ))
                 }
             }
