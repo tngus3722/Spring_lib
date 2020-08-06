@@ -66,4 +66,16 @@
   <li>review, user 처리 관련 null처리</li>
 </ul>  
 
-  
+<h2>0804 feedback 개선</h2>
+<ul>
+  <li>token valid check에서 만료기간만 체크</li>
+  <li>token에 들어가는값은 id, name만 들어가도록 수정</li>
+  <li>이유는 모르겠지만 안되던 로그인, 회원가입 정상작동 -> 문제점 찾지못함 </li>
+  <li>uri  _ -> - 으로 수정, 대문자 -> 소문자로 수정 </li>
+  <li>오타 수정 loging success -> login success</li>
+  <li>open api key는 kakao의 경우 지정된 domain에서만 사용 가능하도록 등록하는 구조라 노출되어도 상관없는것으로 추정</li>
+  <li>package 첫 글자 소문자로 수정 </li>
+  <li>예외처리1 -> 중복회원가입 sql관련 500error 처리</li>
+  <li>예외처리2 -> 회원가입, 게시글 null 입력 처리</li>
+  <li>interface추가 -> 하지만 1:1관계는 약한결합의 의미가 없는듯함 </li>
+</ul>
