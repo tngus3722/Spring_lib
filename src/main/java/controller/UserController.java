@@ -34,7 +34,7 @@ public class UserController {
     @RequestMapping(value = "/log-in" , method = RequestMethod.POST)
     public ResponseEntity logIn(@RequestBody User user, HttpServletResponse response){ // 로그인
         if ( userService.logIn(user, response) ) // 인증성공
-            return new ResponseEntity("loing success",HttpStatus.OK);
+            return new ResponseEntity("login success",HttpStatus.OK);
         else // 인증실패
             return new ResponseEntity("login fail",HttpStatus.UNAUTHORIZED);
     }
