@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Repository.FishMapper">
+<mapper namespace="repository.FishMapper">
     <insert id="initialFishDB" >
         INSERT INTO fishing_hole(name,category,address,latitude,longitude,fish_species,date) VALUES(#{name},#{category},#{address},#{latitude},#{longitude},#{fish_species},#{date})
     </insert>

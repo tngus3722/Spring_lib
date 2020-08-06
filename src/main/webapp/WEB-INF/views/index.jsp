@@ -63,7 +63,7 @@
 <script>
     function logOut(){
         $.ajax({
-              url: "<c:url value="/logOut"/>",
+              url: "<c:url value="/log-out"/>",
             type: "post",
             success: function(data) {
                 alert("logout success");

@@ -1,10 +1,8 @@
-package Controller;
+package controller;
 
-import Domain.User;
-import Service.UserService;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import domain.User;
+import service.UserServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,31 +12,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 
 @Controller
 public class UserController {
-
     @Autowired
-    UserService userService;
-
+    UserServiceImpl userService;
     @ResponseBody
-    @RequestMapping (value = "/signUp" ,method = RequestMethod.POST)
+    @RequestMapping (value = "/sign-up" ,method = RequestMethod.POST)
     public ResponseEntity signUp(@RequestBody User user) { // 회원가입
-        if (  userService.signUp(user) )
+        if (  userService.signUp(user) == 3)
             return new ResponseEntity(HttpStatus.OK);
+        else if ( userService.signUp(user) == 2 )
+            return new ResponseEntity("already used user name",HttpStatus.FORBIDDEN);
         else
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 
-
     @ResponseBody
-    @RequestMapping(value = "/logIn" , method = RequestMethod.POST)
+    @RequestMapping(value = "/log-in" , method = RequestMethod.POST)
     public ResponseEntity logIn(@RequestBody User user, HttpServletResponse response){ // 로그인
         if ( userService.logIn(user, response) ) // 인증성공
             return new ResponseEntity("loing success",HttpStatus.OK);
@@ -47,7 +40,7 @@ public class UserController {
     }
 
     @ResponseBody
-    @RequestMapping(value =  "/logOut")
+    @RequestMapping(value =  "/log-out")
     public ResponseEntity logOut(HttpServletResponse response){ // 로그아웃
         userService.logOut(response);
         return new ResponseEntity(HttpStatus.OK);

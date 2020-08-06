@@ -41,7 +41,7 @@
 <h2> 0712 feedback 개선 </h2>
 <ul>
   <li>SQL DDL 추가</li>
-  <li>directory 이름 수정 DTO -> Domain</li>
+  <li>directory 이름 수정 DTO -> domain</li>
   <li>file 이름 수정 ( fishingHoleDTO -> FishingHole, reviewDTO -> Review )</li> 
   <li>Review int id -> Review Long id 수정, FisingHold int id -> Integer id  ( wrapper class) , fishing hold id 는 744개로 고정된 숫자 </li>
   <li>Review id가 long으로 바뀌었으니 mysql SMALLINT id -> BIGINT id로 수정</li>

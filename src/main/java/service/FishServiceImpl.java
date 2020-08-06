@@ -1,7 +1,7 @@
-package Service;
+package service;
 
-import Domain.FishingHole;
-import Repository.FishMapper;
+import domain.FishingHole;
+import repository.FishMapper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -13,23 +13,29 @@ import java.sql.Date;
 import java.util.List;
 
 @Service
-public class FishService {
+public class FishServiceImpl implements FishService {
 
     @Autowired
     FishMapper fishMapper;
 
-    public FishService(){ }
+    public FishServiceImpl(){ }
+
+    @Override
     public FishingHole viewOne(Long id){
         return fishMapper.viewOne(id); // 낚시터 하나 조회
     }
+
+    @Override
     public List<FishingHole> search(String search){
         return fishMapper.search(search);
     } //검색
+
+    @Override
     public List<FishingHole> display(){
         return fishMapper.display();
     } // 모든 정보 조회
 
-
+    @Override
     public void initial(){ // data2db
         try {
             JSONParser parser = new JSONParser();

@@ -1,6 +1,6 @@
-package Repository;
+package repository;
 
-import Domain.Review;
+import domain.Review;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

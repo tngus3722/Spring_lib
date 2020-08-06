@@ -1,7 +1,7 @@
-package Service;
+package service;
 
-import Domain.Review;
-import Repository.ReviewMapper;
+import domain.Review;
+import repository.ReviewMapper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +13,12 @@ import java.util.List;
 
 
 @Service
-public class ReviewService {
+public class ReviewServiceImpl implements ReviewService {
 
     @Autowired
     private ReviewMapper reviewMapper;
 
+    @Override
     public boolean isNull(Review review){
         if ( "".equals(review.getContent()) )
             return false;
@@ -26,13 +27,15 @@ public class ReviewService {
         else
             return true;
     }
-
+    @Override
     public List<Review> display(Integer fish_id){
         return reviewMapper.display(fish_id);
     } // review list 조회
 
+    @Override
     public Review getReviewById(Long id){ return reviewMapper.getReviewById(id); } // review id를 통해 Review 객체를 가져옴
 
+    @Override
     public Claims getPayloadsToJwt(HttpServletRequest request){ // 클라이언트의 JWT로 부터 payload를  반환함
         Cookie[] cookies = request.getCookies();
         for (int i=0; i<cookies.length; i++){
@@ -44,6 +47,8 @@ public class ReviewService {
         }
         return null;
     }
+
+    @Override
     public boolean insert(Review review, HttpServletRequest request){ // 리뷰삽입
         if ( this.isNull(review)) { // null 이 아니라면
             Long id = this.getPayloadsToJwt(request).get("id", Long.class); // payload에서 user id 추출
@@ -57,6 +62,7 @@ public class ReviewService {
             return false;
     }
 
+    @Override
     public boolean delete(Review review,  HttpServletRequest request){ // 삭제
         Long user_id = this.getPayloadsToJwt(request).get("id",Long.class); // payload 에서 가져온 user id와
         Long reviewedId = this.getReviewById(review.getId()).getUser_id(); // review를 작성한 user의 id가
@@ -68,11 +74,11 @@ public class ReviewService {
             return false; // 삭제 실패
     }
 
+    @Override
     public int update(Review review,  HttpServletRequest request){ // 수정
-        if ( this.isNull(review)  ) { // 값들이 null이 아니며
+        if ( this.isNull(review) ) { // 값들이 null이 아니며
             Long user_id = this.getPayloadsToJwt(request).get("id", Long.class); // payload 에서 가져온 user 정보와
-            Long reviewedId = this.getReviewById(review.getId()).getUser_id();
-            ;// review를 작성한 user의 id가
+            Long reviewedId = this.getReviewById(review.getId()).getUser_id(); // review를 작성한 user의 id가
             if (user_id == reviewedId) { //같다면
                 reviewMapper.update(review.getTitle(), review.getContent(), review.getId()); // 수정
                 return 1; //수정 성공

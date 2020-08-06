@@ -1,21 +1,16 @@
-package Controller;
+package controller;
 
-import Domain.FishingHole;
-import Service.FishService;
+import service.FishServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 @Controller
 public class FishingHoleContoller {
     @Autowired
-    FishService fishService;
+    FishServiceImpl fishService;
 
     @ResponseBody
     @RequestMapping(value = "/data2db")
@@ -39,7 +34,7 @@ public class FishingHoleContoller {
     }
 
     @ResponseBody
-    @RequestMapping (value = "/fish_detail" , method = RequestMethod.GET) // 낚시터 상세정보 조회
+    @RequestMapping (value = "/fish-detail" , method = RequestMethod.GET) // 낚시터 상세정보 조회
     public ResponseEntity fish_detail(@RequestParam Long id){
         return new ResponseEntity(fishService.viewOne(id), HttpStatus.OK);
     }

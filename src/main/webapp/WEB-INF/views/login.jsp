@@ -24,10 +24,12 @@
     function signUp(){
         var name = $("#name").val();
         var password = $("#password").val();
-        password = SHA256(password);
+        if (password != null && password == "") {
+            password = SHA256(password);
+        }
         var obj = {"name" : name, "password":password};
         $.ajax({
-            url: "<c:url value="/signUp"/>",
+            url: "<c:url value="/sign-up"/>",
             type: "post",
             data: JSON.stringify(obj),
             contentType: "application/json",
@@ -38,6 +40,9 @@
                 },
                 400:function (data) {
                     alert("input is null");
+                },
+                401:function (data) {
+                    alert(JSON.stringify(data.responseText ))
                 }
             }
         }).done(function(data){
@@ -52,7 +57,7 @@
         password = SHA256(password);
         var obj = {"name" : name, "password":password};
         $.ajax({
-            url: "<c:url value="/logIn"/>",
+            url: "<c:url value="/log-in"/>",
             type: "post",
             data: JSON.stringify(obj),
             contentType: "application/json",

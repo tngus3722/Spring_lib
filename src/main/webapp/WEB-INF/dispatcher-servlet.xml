@@ -7,9 +7,9 @@
 
     <mvc:annotation-driven/>
 
-    <context:component-scan base-package="Controller"/>
-    <context:component-scan base-package="Service"/>
-    <context:component-scan base-package="Repository"/>
+    <context:component-scan base-package="controller"/>
+    <context:component-scan base-package="service"/>
+    <context:component-scan base-package="repository"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/"/>
@@ -20,18 +20,18 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/detail/*" />
-            <bean class="Interceptor.AuthInterceptor" />
+            <bean class="interceptor.AuthInterceptor" />
         </mvc:interceptor>
     </mvc:interceptors>
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/board/*" />
-            <bean class="Interceptor.AuthInterceptor" />
+            <bean class="interceptor.AuthInterceptor" />
         </mvc:interceptor>
     </mvc:interceptors><mvc:interceptors>
     <mvc:interceptor>
         <mvc:mapping path="/login" />
-        <bean class="Interceptor.AuthInterceptor" />
+        <bean class="interceptor.AuthInterceptor" />
     </mvc:interceptor>
 </mvc:interceptors>
 

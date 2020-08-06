@@ -1,6 +1,6 @@
-package Repository;
+package repository;
 
-import Domain.User;
+import domain.User;
 import org.springframework.stereotype.Repository;
 
 @Repository

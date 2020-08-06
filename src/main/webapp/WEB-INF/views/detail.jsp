@@ -98,7 +98,7 @@
     $( document ).ready(function(){
         var param = ${param.id};
         $.ajax({
-            url: "/fish/fish_detail?id="+encodeURI(param),
+            url: "/fish/fish-detail?id="+encodeURI(param),
             type: "get",
             dataType: "json",
             contentType: "application/json",

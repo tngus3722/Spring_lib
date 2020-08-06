@@ -5,8 +5,8 @@
 
 <configuration>
     <typeAliases>
-        <typeAlias type="Domain.FishingHole" alias="fish"/>
-        <typeAlias type="Domain.Review" alias="review"/>
-        <typeAlias type="Domain.User" alias="user"/>
+        <typeAlias type="domain.FishingHole" alias="fish"/>
+        <typeAlias type="domain.Review" alias="review"/>
+        <typeAlias type="domain.User" alias="user"/>
     </typeAliases>
 </configuration>

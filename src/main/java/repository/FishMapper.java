@@ -1,6 +1,6 @@
-package Repository;
+package repository;
 
-import Domain.FishingHole;
+import domain.FishingHole;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
