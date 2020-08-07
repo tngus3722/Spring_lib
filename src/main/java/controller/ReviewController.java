@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Review;
+import service.ReviewService;
 import service.ReviewServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class ReviewController {
     @Autowired
-    ReviewServiceImpl reviewService;
+    ReviewService reviewService;
 
     @ResponseBody
     @RequestMapping(value = "/board", method = RequestMethod.GET) // 해당 낚시터 리뷰 조회

@@ -1,6 +1,7 @@
 package controller;
 
 import domain.User;
+import service.UserService;
 import service.UserServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class UserController {
     @Autowired
-    UserServiceImpl userService;
+    UserService userService;
     @ResponseBody
     @RequestMapping (value = "/sign-up" ,method = RequestMethod.POST)
     public ResponseEntity signUp(@RequestBody User user) { // 회원가입

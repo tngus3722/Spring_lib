@@ -1,5 +1,6 @@
 package controller;
 
+import service.FishService;
 import service.FishServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class FishingHoleContoller {
     @Autowired
-    FishServiceImpl fishService;
+    FishService fishService;
 
     @ResponseBody
     @RequestMapping(value = "/data2db")
