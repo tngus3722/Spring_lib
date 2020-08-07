@@ -24,7 +24,7 @@
     function signUp(){
         var name = $("#name").val();
         var password = $("#password").val();
-        if (password == null && password == "") {
+        if (password != null && password != "") {
             password = SHA256(password);
         }
         var obj = {"name" : name, "password":password};

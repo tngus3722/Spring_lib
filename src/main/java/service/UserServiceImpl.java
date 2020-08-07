@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
         else if ( "".equals(user.getPassword())) // null password
             return 1;
 
-        else if ( userMapper.getUserByName(user.getName()).getName().equals( user.getName())){ // 이미 사용되고 있는 name
+        else if ( ( userMapper.getUserByName(user.getName())) != null ){ // 이미 사용되고 있는 name
             return 2;
         }
         else{
