@@ -19,10 +19,10 @@ import java.util.Map;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-
     UserMapper userMapper;
 
     private String key = "Mysecretkey"; // secret key
+
 
     @Override
     public boolean isValidToken(String jwt){ // 토큰이 유효한지 검사하는 함수
@@ -35,6 +35,7 @@ public class UserServiceImpl implements UserService {
         else
             return false;
     }
+
     @Override
     public String createJwt(User user){ // 토큰 생성
         Map<String, Object> headers = new HashMap<String, Object>(); // header

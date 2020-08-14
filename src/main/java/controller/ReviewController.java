@@ -18,8 +18,8 @@ public class ReviewController {
 
     @ResponseBody
     @RequestMapping(value = "/board", method = RequestMethod.GET) // 해당 낚시터 리뷰 조회
-    public ResponseEntity getBoard(@RequestParam("id") Integer id){
-        return new ResponseEntity(reviewService.display(id), HttpStatus.OK);
+    public ResponseEntity getBoard(@RequestParam("fish_id") Integer fish_id){
+        return new ResponseEntity(reviewService.display(fish_id), HttpStatus.OK);
     }
 
     @ResponseBody

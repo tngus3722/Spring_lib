@@ -28,10 +28,10 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
             }
         }
         if ( !check && !url.contains("login")) //token 없고, login창을 요구한것이 아니라면
-            response.sendRedirect("/fish/login"); // 로그인 화면으로
+            response.sendRedirect("/login"); // 로그인 화면으로
 
         if ( check && url.contains("login")){ // token이 있고, login창을 요청한다면
-            response.sendRedirect("/fish"); // 처음화면으로
+            response.sendRedirect("/"); // 처음화면으로
         }
         return super.preHandle(request, response, handler);
     }

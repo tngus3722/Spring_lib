@@ -36,7 +36,7 @@
             statusCode: {
                 200:function(data) {
                     alert("sign up success");
-                    location.href = "/fish";
+                    location.href = "/";
                 },
                 400:function (data) {
                     alert("input is null");
@@ -64,7 +64,7 @@
             statusCode: {
                 200:function(data) {
                     alert(data );
-            location.href = "/fish";
+            location.href = "/";
                 },
                 401:function (data) {
                     alert(JSON.stringify(data.responseText ))

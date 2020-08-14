@@ -1,5 +1,8 @@
 package controller;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.Authorization;
 import service.FishService;
 import service.FishServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,7 @@ public class FishingHoleContoller {
         return new ResponseEntity(HttpStatus.OK);
     }
 
+
     @ResponseBody
     @RequestMapping(value = "/display",  method = RequestMethod.GET) // 낚시터 목록 조회
     public ResponseEntity display(){ // 기본화면
@@ -27,9 +31,10 @@ public class FishingHoleContoller {
 
     }
 
+    @ApiOperation( value = "value test", notes = "notes test", authorizations = @Authorization(value = "Authorization"))
     @ResponseBody
     @RequestMapping(value = "/search" , method = RequestMethod.GET) // 낚시터 검색 조회
-    public ResponseEntity search(@RequestParam("search") String search)
+    public ResponseEntity search(@ApiParam(name ="serach" , value = "desc test") @RequestParam("search") String search)
     {
         return new ResponseEntity(fishService.search(search), HttpStatus.OK);
     }

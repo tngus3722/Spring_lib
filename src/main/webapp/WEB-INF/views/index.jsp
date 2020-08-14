@@ -28,7 +28,7 @@
             success: function(list) {
                 var str = '<tr> + <td>낚시터 이름</td><td>낚시터 주소</td> </tr>';
                 for( var i=0; i<list.length; i++) {
-                    str += '<tr>' + '<td>'+'<a href= "/fish/detail/?id=' + list[i].id + '">' + list[i].name +'</a>'+ '</td>' + '<td>' + list[i].address + '</td>' + '</tr>';
+                    str += '<tr>' + '<td>'+'<a href= "/detail/?id=' + list[i].id + '">' + list[i].name +'</a>'+ '</td>' + '<td>' + list[i].address + '</td>' + '</tr>';
                 }
                 $('table').append(str);
             },
@@ -42,7 +42,8 @@
     function search(){
         var search = $("#search").val();
         $.ajax({
-            url: "/fish/search?search="+encodeURI(search),
+            url: "" +
+                "/search?search="+encodeURI(search),
             type: "get",
             dataType: "json",
             contentType: "application/json",
@@ -50,7 +51,7 @@
                 var str = '<tr> + <td>낚시터 이름</td><td>낚시터 주소</td> </tr>';
                 $('table').empty();
                 for( var i=0; i<list.length; i++) {
-                    str += '<tr>' + '<td>'+'<a href="/fish/detail/?id=' + list[i].id + '">' + list[i].name +'</a>'+ '</td>' + '<td>' + list[i].address + '</td>' + '</tr>';
+                    str += '<tr>' + '<td>'+'<a href="/detail/?id=' + list[i].id + '">' + list[i].name +'</a>'+ '</td>' + '<td>' + list[i].address + '</td>' + '</tr>';
             }
                 $('table').append(str);
             },
