@@ -16,7 +16,8 @@
     <context:component-scan base-package="repository"/>
     <context:component-scan base-package="swagger"/>
     <context:component-scan base-package="aop"/>
-    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    <context:component-scan base-package="slack"/>
+    <aop:aspectj-autoproxy />
     <mvc:resources location="classpath:/META-INF/resources/" mapping="swagger-ui.html"></mvc:resources>
     <mvc:resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**"/>
 
@@ -28,18 +29,10 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/detail/*" />
-            <bean class="interceptor.AuthInterceptor" />
-        </mvc:interceptor>
-    </mvc:interceptors>
-    <mvc:interceptors>
-        <mvc:interceptor>
+            <mvc:mapping path="/login" />
             <mvc:mapping path="/board/*" />
             <bean class="interceptor.AuthInterceptor" />
         </mvc:interceptor>
-    </mvc:interceptors><mvc:interceptors>
-    <mvc:interceptor>
-        <mvc:mapping path="/login" />
-        <bean class="interceptor.AuthInterceptor" />
-    </mvc:interceptor>
-</mvc:interceptors>
+    </mvc:interceptors>
+
 </beans>

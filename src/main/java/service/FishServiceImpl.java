@@ -18,7 +18,6 @@ public class FishServiceImpl implements FishService {
     @Autowired
     FishMapper fishMapper;
 
-    public FishServiceImpl(){ }
 
     @Override
     public FishingHole viewOne(Long id){

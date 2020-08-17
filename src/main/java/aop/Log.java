@@ -3,13 +3,25 @@ package aop;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
+import domain.SlackAttachment;
+import domain.SlackParameter;
+import slack.SlackSender;
+
+import java.nio.charset.Charset;
+import java.util.ArrayList;
 
 @Component
 @Aspect
 public class Log {
 
-    @Around("execution( * service.UserService.logIn(..))") // login 전, 후 실행 around
+    @Autowired
+    SlackSender slackSender;
+
+    @Around("execution( * service.UserServiceImpl.logIn(..))") // login 전, 후 실행 around
     public Object LogInLog(ProceedingJoinPoint proceedingJoinPoint) {
         Object result = null;
         try {
@@ -22,21 +34,27 @@ public class Log {
         return result;
     }
 
-    @After("execution( * service.UserService.signUp(..))") // sign up 후 실행
+    @After("execution( * service.UserServiceImpl.signUp(..))") // sign up 후 실행
     public void SignUpAfterLog(JoinPoint joinPoint) {
         System.out.println("after do " + joinPoint.getSignature().getName() + " - after");
     }
-    @Before("execution( * service.UserService.signUp(..))") // sign up 전 실행
+    @Before("execution( * service.UserServiceImpl.signUp(..))") // sign up 전 실행
     public void SignUpBeforeLog(JoinPoint joinPoint) {
         System.out.println("before do " + joinPoint.getSignature().getName() + " - before");
     }
-    @AfterReturning("execution( * service.UserService.logOut(..))") // create jwt 정상수행 후 실행
-    public void SignUpAfterReturningLog(JoinPoint joinPoint) {
-        System.out.println(" do success " + joinPoint.getSignature().getName() + " - after-returning");
+    @AfterReturning("execution( * service.UserServiceImpl.logOut(..))") // log out 정상수행 후 실행
+    public void LogOutAfterReturningLog(JoinPoint joinPoint) {
+        System.out.println("success do " + joinPoint.getSignature().getName() + " - AfterReturning");
     }
-    @AfterThrowing("execution(* service.ReviewService.update(..))") // update 에러발생 후 실행
-    public void SignUpAfterThrowingLog(JoinPoint joinPoint) {
-        System.out.println("do fail " + joinPoint.getSignature().getName() + " - after-throwing");
+
+    @AfterThrowing(pointcut = "execution(* service.ReviewServiceImpl.update(..))" ,  throwing = "exception") // update 에러발생 후 실행
+    public void SignUpAfterThrowingLog(JoinPoint joinPoint , Throwable exception) {
+        SlackAttachment slackAttachment = new SlackAttachment();
+        slackAttachment.setAuthor_name("정수현");
+        slackAttachment.setColor("danger");
+        slackAttachment.setTitle("Error method : " + joinPoint.getSignature().getName() );
+        slackAttachment.setText("Error name : " + exception);
+        slackSender.noticeError(slackAttachment);
     }
 
 }

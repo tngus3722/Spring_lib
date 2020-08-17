@@ -1,6 +1,7 @@
 package interceptor;
 
-import service.UserServiceImpl;
+import service.ReviewServiceImpl;
+import service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AuthInterceptor extends HandlerInterceptorAdapter {
 
     @Autowired
-    UserServiceImpl userService;
+    UserService userService;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

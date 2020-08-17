@@ -1,11 +1,13 @@
 package service;
 
 import domain.Review;
+import domain.SlackAttachment;
 import repository.ReviewMapper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import slack.SlackSender;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +19,8 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Autowired
     private ReviewMapper reviewMapper;
+    @Autowired
+    private SlackSender slackSender;
 
     @Override
     public boolean isNull(Review review){
@@ -55,6 +59,14 @@ public class ReviewServiceImpl implements ReviewService {
             String writer = this.getPayloadsToJwt(request).get("name", String.class); // payload에서 user name 추철
             review.setWritter(writer); // set
             review.setUser_id(id); // set
+
+            SlackAttachment slackAttachment = new SlackAttachment();
+            slackAttachment.setAuthor_name("정수현");
+            slackAttachment.setTitle("Post");
+            slackAttachment.setText("posted title is " + review.getTitle());
+            slackAttachment.setColor("36a64f");
+            slackSender.noticePost(slackAttachment);
+
             reviewMapper.insert(review); // 삽입
             return true;
         }
