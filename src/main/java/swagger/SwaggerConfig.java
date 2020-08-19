@@ -28,7 +28,7 @@ public class SwaggerConfig {
     }
 
     private ApiKey apiKey() {
-        return new ApiKey("Authorization", "tngus", "header");
+        return new ApiKey("Authorization", "Authorization", "header");
     }
 
     private ApiInfo apiInfo() {

@@ -1,6 +1,8 @@
 package controller;
 
 import domain.User;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
 import service.UserService;
 import service.UserServiceImpl;
 
@@ -30,7 +32,7 @@ public class UserController {
         else
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
-
+    @ApiOperation( value = "value test", notes = "notes test", authorizations = @Authorization(value = "Authorization"))
     @ResponseBody
     @RequestMapping(value = "/log-in" , method = RequestMethod.POST)
     public ResponseEntity logIn(@RequestBody User user, HttpServletResponse response){ // 로그인

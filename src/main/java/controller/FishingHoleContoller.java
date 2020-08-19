@@ -31,10 +31,10 @@ public class FishingHoleContoller {
 
     }
 
-    @ApiOperation( value = "value test", notes = "notes test", authorizations = @Authorization(value = "Authorization"))
+    @ApiOperation( value = "value test", notes = "notes test", authorizations = @Authorization(value = "token"))
     @ResponseBody
     @RequestMapping(value = "/search" , method = RequestMethod.GET) // 낚시터 검색 조회
-    public ResponseEntity search(@ApiParam(name ="serach" , value = "desc test") @RequestParam("search") String search)
+    public ResponseEntity search(@ApiParam(name ="search" , value = "desc test") @RequestParam("search") String search)
     {
         return new ResponseEntity(fishService.search(search), HttpStatus.OK);
     }

@@ -19,18 +19,20 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         boolean check = false;
         String url = request.getRequestURL().toString(); // 요청 url을 String으로 가져옴
+        String test = request.getHeader("Authorization");
+
 
         Cookie[] cookies = request.getCookies();
-        for (int i=0; i<cookies.length; i++){ // 쿠키들 중에서
-            if ( cookies[i].getName().equals("token")){ //token이 있다면
-                if ( userService.isValidToken(cookies[i].getValue())){ // cookie의 jwt token이 valid하다면
+        for (int i = 0; i < cookies.length; i++) { // 쿠키들 중에서
+            if (cookies[i].getName().equals("token")) { //token이 있다면
+                if (userService.isValidToken(cookies[i].getValue())) { // cookie의 jwt token이 valid하다면
                     check = true; // true
                 }
             }
         }
-        if ( !check && !url.contains("login")) //token 없고, login창을 요구한것이 아니라면
+        if (!check && !url.contains("login")) {//token 없고, login창을 요구한것이 아니라면
             response.sendRedirect("/login"); // 로그인 화면으로
-
+        }
         if ( check && url.contains("login")){ // token이 있고, login창을 요청한다면
             response.sendRedirect("/"); // 처음화면으로
         }

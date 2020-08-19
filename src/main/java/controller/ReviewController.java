@@ -1,6 +1,9 @@
 package controller;
 
 import domain.Review;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
+import io.swagger.models.auth.AuthorizationValue;
 import service.ReviewService;
 import service.ReviewServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,7 @@ public class ReviewController {
     @Autowired
     ReviewService reviewService;
 
+    @ApiOperation( value = "value test", notes = "notes test", authorizations = @Authorization(value = "Authorization"))
     @ResponseBody
     @RequestMapping(value = "/board", method = RequestMethod.GET) // 해당 낚시터 리뷰 조회
     public ResponseEntity getBoard(@RequestParam("fish_id") Integer fish_id){
