@@ -19,7 +19,6 @@ public class SlackSender {
     public SlackSender(){
         restTemplate = new RestTemplate();
         headers = new HttpHeaders();
-        headers.setContentType(MediaType.valueOf("text/plain;charset=utf-8"));
         headers.add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" +
                 " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
 
@@ -40,7 +39,7 @@ public class SlackSender {
         RestTemplate restTemplate = new RestTemplate();
         HttpEntity<SlackParameter> entity = new HttpEntity<SlackParameter>(slackParameter, this.headers);
 
-        restTemplate.postForObject(url,entity, String.class);
+        restTemplate.exchange(url, HttpMethod.GET,entity, String.class);
     }
 
     public void noticeError(SlackAttachment slackAttachment){
@@ -54,6 +53,6 @@ public class SlackSender {
         RestTemplate restTemplate = new RestTemplate();
         HttpEntity<SlackParameter> entity = new HttpEntity<SlackParameter>(slackParameter, this.headers);
 
-        restTemplate.postForObject(url,entity, String.class);
+        restTemplate.exchange(url, HttpMethod.GET,entity, String.class);
     }
 }
