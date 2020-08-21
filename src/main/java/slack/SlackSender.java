@@ -34,6 +34,8 @@ public class SlackSender {
         ArrayList<SlackAttachment> list = new ArrayList<SlackAttachment>();
         list.add(slackAttachment);
 
+        slackParameter.setAttachments(list);
+
         restTemplate.postForObject(slack_url,slackParameter, String.class);
     }
 
