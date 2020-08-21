@@ -17,6 +17,7 @@ public class SlackSender {
 
     public SlackSender(){
         restTemplate = new RestTemplate();
+
         restTemplate.getMessageConverters().add(0,new StringHttpMessageConverter((Charset.forName("UTF-8"))));
         slackParameter = new SlackParameter();
         slackParameter.setChannel("#tngus");
@@ -31,7 +32,7 @@ public class SlackSender {
 
         slackParameter.setAttachments(list);
 
-        restTemplate.postForObject(url,slackParameter, String.class);
+        //restTemplate.postForObject(url,slackParameter, String.class);
     }
 
     public void noticeError(SlackAttachment slackAttachment){
@@ -42,6 +43,6 @@ public class SlackSender {
 
         slackParameter.setAttachments(list);
 
-        restTemplate.postForObject(url,slackParameter, String.class);
+        //restTemplate.postForObject(url,slackParameter, String.class);
     }
 }
