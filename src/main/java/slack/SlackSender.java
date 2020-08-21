@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 @Service
 public class SlackSender {
-    private String url = "https://hooks.slack.com/services/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";
+    private String url = "https://hooks.slack.com/services/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";
     private RestTemplate restTemplate;
     private SlackParameter slackParameter;
 
