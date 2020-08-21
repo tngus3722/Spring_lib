@@ -32,7 +32,7 @@ public class SlackSender {
 
         slackParameter.setAttachments(list);
 
-        //restTemplate.postForObject(url,slackParameter, String.class);
+        restTemplate.postForObject(url,slackParameter, String.class);
     }
 
     public void noticeError(SlackAttachment slackAttachment){
@@ -43,6 +43,6 @@ public class SlackSender {
 
         slackParameter.setAttachments(list);
 
-        //restTemplate.postForObject(url,slackParameter, String.class);
+        restTemplate.postForObject(url,slackParameter, String.class);
     }
 }
