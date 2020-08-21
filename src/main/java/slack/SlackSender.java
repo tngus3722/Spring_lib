@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 @Service
 public class SlackSender {
-    private String url = "https://hooks.slack.com/services/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";
+    private String url = "https://hooks.slack.com/services/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";
     private RestTemplate restTemplate;
     private SlackParameter slackParameter;
 
@@ -28,8 +28,6 @@ public class SlackSender {
 
         ArrayList<SlackAttachment> list = new ArrayList<SlackAttachment>();
         list.add(slackAttachment);
-
-        slackParameter.setAttachments(list);
 
         restTemplate.postForObject(url,slackParameter, String.class);
     }
