@@ -141,14 +141,14 @@
         var fish_id = $("#post_fish_id").val();
         var obj = { "title": title, "content" : content, "fish_id" : fish_id };
         $.ajax({
-            url: "/fish/board",
+            url: "/board",
             type: "post",
             data: JSON.stringify(obj),
             contentType: "application/json",
             statusCode: {
                 201:function(data) {
                     alert(data );
-                    location.reload();
+
                 },
                 400:function (data) {
                     alert(JSON.stringify(data.responseText ))
