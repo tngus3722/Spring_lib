@@ -17,7 +17,7 @@
     </style>
 </head>
 <body>
-<h1><a href="/">전국낚시터 정보</a></h1>
+<h1><a href="/fish">전국낚시터 정보</a></h1>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=114864cacc0f8e3d5daf86f9122b9777"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <div id="map"style="width:500px;height:400px;"></div>
@@ -68,7 +68,7 @@
                 + "/" + d.getFullYear();
         }
         $.ajax({
-            url: "/board?fish_id="+encodeURI(param),
+            url: "/fish/board?fish_id="+encodeURI(param),
             type: "get",
             dataType: "json",
             contentType: "application/json",
@@ -98,7 +98,7 @@
     $( document ).ready(function(){
         var param = ${param.id};
         $.ajax({
-            url: "/fish-detail?id="+encodeURI(param),
+            url: "/fish/fish-detail?id="+encodeURI(param),
             type: "get",
             dataType: "json",
             contentType: "application/json",
@@ -141,7 +141,7 @@
         var fish_id = $("#post_fish_id").val();
         var obj = { "title": title, "content" : content, "fish_id" : fish_id };
         $.ajax({
-            url: "/board",
+            url: "/fish/board",
             type: "post",
             data: JSON.stringify(obj),
             contentType: "application/json",
@@ -163,7 +163,7 @@
     function del(id) {
         var obj = { "id":id };
         $.ajax({
-            url: "/board",
+            url: "/fish/board",
             type: "delete",
             data: JSON.stringify(obj),
             contentType: "application/json",
@@ -188,7 +188,7 @@
         var content = $("#update_content").val();
         var obj = { "id": id, "title": title, "content" : content};
         $.ajax({
-            url: "/board",
+            url: "/fish/board",
             type: "put",
             data: JSON.stringify(obj),
             contentType: "application/json",
