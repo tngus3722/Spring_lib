@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 
-@Component
+@Service
 public class SlackSender {
 
     @Value("${slack_url}")
@@ -29,7 +29,6 @@ public class SlackSender {
     };
 
     public void noticePost(SlackAttachment slackAttachment){
-        System.out.println(slack_url);
         slackParameter.setText("noticePost");
 
         ArrayList<SlackAttachment> list = new ArrayList<SlackAttachment>();
