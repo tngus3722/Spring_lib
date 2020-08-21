@@ -2,16 +2,21 @@ package slack;
 
 import domain.SlackAttachment;
 import domain.SlackParameter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 
-@Service
+@Component
 public class SlackSender {
-    private String url = "https://hooks.slack.com/services/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";
+
+    @Value("${slack_url}")
+    private String slack_url;
+
     private RestTemplate restTemplate;
     private SlackParameter slackParameter;
 
@@ -24,12 +29,13 @@ public class SlackSender {
     };
 
     public void noticePost(SlackAttachment slackAttachment){
+        System.out.println(slack_url);
         slackParameter.setText("noticePost");
 
         ArrayList<SlackAttachment> list = new ArrayList<SlackAttachment>();
         list.add(slackAttachment);
 
-        restTemplate.postForObject(url,slackParameter, String.class);
+        restTemplate.postForObject(slack_url,slackParameter, String.class);
     }
 
     public void noticeError(SlackAttachment slackAttachment){
@@ -40,6 +46,6 @@ public class SlackSender {
 
         slackParameter.setAttachments(list);
 
-        restTemplate.postForObject(url,slackParameter, String.class);
+        restTemplate.postForObject(slack_url,slackParameter, String.class);
     }
 }
