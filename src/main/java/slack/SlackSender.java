@@ -2,7 +2,9 @@ package slack;
 
 import domain.SlackAttachment;
 import domain.SlackParameter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -10,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+
 
 @Service
 public class SlackSender {

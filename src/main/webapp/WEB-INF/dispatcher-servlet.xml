@@ -17,17 +17,11 @@
     <context:component-scan base-package="swagger"/>
     <context:component-scan base-package="aop"/>
     <context:component-scan base-package="slack"/>
+    <context:component-scan base-package="aws"/>
     <aop:aspectj-autoproxy />
     <mvc:resources location="classpath:/META-INF/resources/" mapping="swagger-ui.html"></mvc:resources>
     <mvc:resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**"/>
-
-    <bean id="propertyConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="locations">
-            <list>
-                <value>classpath*:/mybatis/jdbc.properties</value>
-            </list>
-        </property>
-    </bean>
+    <context:property-placeholder location="classpath*:mybatis/jdbc.properties" />
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/"/>

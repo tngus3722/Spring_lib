@@ -11,6 +11,10 @@
             classpath*:mybatis/*.xml
         </param-value>
     </context-param>
+    <context-param>
+        <param-name/>
+        <param-value/>
+    </context-param>
 
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -55,4 +59,14 @@
         <filter-name>CORSFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+    <filter>
+        <filter-name>xssEscapeServletFilter</filter-name>
+        <filter-class>com.navercorp.lucy.security.xss.servletfilter.XssEscapeServletFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>xssEscapeServletFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
 </web-app>

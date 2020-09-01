@@ -10,6 +10,7 @@
     </style>
 </head>
 <body>
+<img src="https://s3.tngus3722.com/tngus/Image%20from%20iOS.jpg">
 <h1><a href='<c:url value="/"/>'>전국낚시터 정보</a></h1>
 <a href = '<c:url value="/login"/>' >로그인</a> <button onclick="logOut()" type="button">로그아웃</button><br>
 <input type="text" name="search" id="search">

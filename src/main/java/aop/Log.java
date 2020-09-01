@@ -1,9 +1,12 @@
 package aop;
 
+import jdk.nashorn.internal.objects.annotations.Property;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -14,6 +17,7 @@ import slack.SlackSender;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 
+
 @Component
 @Aspect
 public class Log {
@@ -21,10 +25,14 @@ public class Log {
     @Autowired
     SlackSender slackSender;
 
+    @Value("${slack_url}")
+    private String url;
+
     @Around("execution( * service.UserServiceImpl.logIn(..))") // login 전, 후 실행 around
     public Object LogInLog(ProceedingJoinPoint proceedingJoinPoint) {
         Object result = null;
         try {
+            System.out.println(url);
             System.out.println("pre do login - around"); // 전 실행
             result = proceedingJoinPoint.proceed(); // do target
             System.out.println("after do login - around"); // 후 실행
