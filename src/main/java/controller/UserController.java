@@ -39,7 +39,7 @@ public class UserController {
         if ( userService.logIn(user, response) ) // 인증성공
             return new ResponseEntity("login success",HttpStatus.OK);
         else // 인증실패
-            return new ResponseEntity("login fail",HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity(user.getName(),HttpStatus.UNAUTHORIZED);
     }
 
     @ResponseBody

@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <config xmlns="http://www.nhncorp.com/lucy-xss"
-        extends="lucy-xss-superset.xml">
+        extends="lucy-xss-superset.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.nhncorp.com/lucy-xss ">
     <elementRule>
-        <element name="applet" disable="true" />
-        <element name="base" disable="true" />
-        <element name="body" disable="true" />
-        <element name="form" disable="true" />
-        <element name="html" disable="true" />
-        <element name="iframe" disable="true" />
-        <element name="meta" disable="true" />
-        <element name="script" disable="true" />
-        <element name="style" disable="true" />
-        <element name="textarea" disable="true" />
-        <element name="xml" disable="true" />
-        <element name="xmp" disable="true" />
-        <element name="td" endTag="false" />
-        <element name="embed" disable="false" />
-        <element name="object" disable="true" />
+        <element name="applet" disable="true"/>
+        <element name="base" disable="true"/>
+        <element name="body" disable="true"/>
+        <element name="form" disable="true"/>
+        <element name="html" disable="true"/>
+        <element name="iframe" disable="true"/>
+        <element name="meta" disable="true"/>
+        <element name="script" disable="true"/>
+        <element name="style" disable="true"/>
+        <element name="textarea" disable="true"/>
+        <element name="xml" disable="true"/>
+        <element name="xmp" disable="true"/>
+        <element name="td" endTag="false"/>
+        <element name="embed" disable="false"/>
+        <element name="object" disable="true"/>
     </elementRule>
 
     <attributeRule>
