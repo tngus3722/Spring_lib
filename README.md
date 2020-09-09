@@ -27,3 +27,17 @@
     
     
 ![sdasd](https://user-images.githubusercontent.com/32263898/88478903-c7085200-cf86-11ea-9fcd-325700533c46.PNG)
+
+<ul>
+  <li>mybatis-mysql 사용</li>
+  <li>JWT Token을 이용한 회원기능</li>
+  <li>게시판 기능</li>
+  <li>AOP를 이용한 Slack notification 기능</li>
+  <li>Jenkins-github 자동 배포 기능</li>
+  <li>AWS EC2-route53을 이용한 hosting http://www.tngus3722.com/fish/ </li>
+  <li>AWS SES (기능 test 구현만 )</li>
+  <li>redis ( 기능 test 구현만)</li>
+  <li>Cors Filter 적용</li>
+  <li>Swagger 적용</li>
+  <li>lucy-XSS-Servlet-Filter 적용</li>
+</ul>
