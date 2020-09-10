@@ -34,7 +34,7 @@
   <li>게시판 기능</li>
   <li>AOP를 이용한 Slack notification 기능</li>
   <li>Jenkins-github 자동 배포 기능</li>
-  <li>AWS EC2-route53을 이용한 hosting http://www.tngus3722.com/fish/ </li>
+  <li>AWS EC2-route53을 이용한 hosting  </li>
   <li>AWS SES (기능 test 구현만 )</li>
   <li>redis ( 기능 test 구현만)</li>
   <li>Cors Filter 적용</li>
